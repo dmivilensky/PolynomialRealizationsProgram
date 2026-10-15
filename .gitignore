@@ -1,0 +1,6 @@
+/.lake
+/.VSCodeCounter
+/dep*
+__pycache__/
+.DS_Store
+*.pyc
