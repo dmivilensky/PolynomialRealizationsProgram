@@ -1,5 +1,5 @@
 name = "PolynomialRealizationsProgram"
-defaultTargets = ["PolynomialRealizationsProgram"]
+defaultTargets = ["Verification"]
 
 [[require]]
 name = "mathlib"
@@ -12,13 +12,32 @@ git = "https://github.com/alerad/leancert.git"
 rev = "b772f2c376b1103f444a71fe910b146c0bc9b002"
 
 [[lean_lib]]
-name = "«2606.16671v2»"
+name = "chebyshev1"
 leanOptions = { warningAsError = true }
 
 [[lean_lib]]
-name = "«2610.05164v2»"
+name = "chebyshev2"
 leanOptions = { autoImplicit = false, warningAsError = true }
 
 [[lean_lib]]
-name = "PolynomialRealizationsProgram"
+name = "Verification"
+srcDir = "Tools"
+roots = ["Verification.All", "Verification.Audit"]
+leanOptions = { autoImplicit = false, warningAsError = true }
+
+# Local-only package; uncomment to restore its build.
+# [[lean_lib]]
+# name = "jacobi"
+# roots = ["jacobi", "jacobi.Check"]
+# leanOptions = { autoImplicit = false, warningAsError = true }
+
+# Local-only package; uncomment to restore its build.
+# [[lean_lib]]
+# name = "krylov"
+# roots = ["krylov", "krylov.Check"]
+# leanOptions = { autoImplicit = false, warningAsError = true }
+
+[[lean_lib]]
+name = "polyak"
+roots = ["polyak", "polyak.Check"]
 leanOptions = { autoImplicit = false, warningAsError = true }

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:heavy-ball:part1:proof:v1",
+  "title": "Heavy-Ball Part I mathematical data contract, version 1",
+  "description": "Structural interchange schema; rational reduction, interval order, source identities and certificate validity require separate mathematical checks.",
+  "oneOf": [
+    {"$ref": "#/$defs/manifest"},
+    {"$ref": "#/$defs/mathematics"},
+    {"$ref": "#/$defs/continuation"},
+    {"$ref": "#/$defs/checkReport"}
+  ],
+  "$defs": {
+    "schemaVersion": {"const": "heavy-ball-part1-proof-v1"},
+    "rational": {"type": "string", "pattern": "^(?:0|-?[1-9][0-9]*)(?:/[1-9][0-9]*)?$"},
+    "interval": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {"$ref": "#/$defs/rational"}
+    },
+    "polynomial": {
+      "type": "object", "required": ["variables", "terms"], "additionalProperties": false,
+      "properties": {
+        "variables": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 2, "maxItems": 2,
+            "prefixItems": [
+              {"$ref": "#/$defs/rational"},
+              {"type": "array", "items": {"type": "integer", "minimum": 0}}
+            ], "items": false
+          }
+        }
+      }
+    },
+    "rationalFunction": {
+      "type": "object", "required": ["numerator", "denominator"], "additionalProperties": false,
+      "properties": {"numerator": {"$ref": "#/$defs/polynomial"}, "denominator": {"$ref": "#/$defs/polynomial"}}
+    },
+    "witnessTree": {
+      "oneOf": [
+        {"type": "object", "required": ["q_interval"], "additionalProperties": false,
+         "properties": {"q_interval": {"$ref": "#/$defs/interval"}}},
+        {"type": "object", "required": ["left", "right"], "additionalProperties": false,
+         "properties": {"left": {"$ref": "#/$defs/witnessTree"}, "right": {"$ref": "#/$defs/witnessTree"}}}
+      ]
+    },
+    "startup": {
+      "type": "object", "required": ["master_polynomial", "branch", "checks"],
+      "properties": {
+        "master_polynomial": {"$ref": "#/$defs/polynomial"},
+        "branch": {"type": "string"},
+        "checks": {
+          "type": "array", "minItems": 44, "maxItems": 44,
+          "items": {
+            "type": "object", "required": ["name", "interval", "source", "witness_method", "witness_scale", "numerator_witness", "reduced"],
+            "properties": {
+              "name": {"type": "string"}, "interval": {"$ref": "#/$defs/interval"},
+              "source": {"$ref": "#/$defs/rationalFunction"},
+              "witness_method": {"const": "integer-horner-physical-branch-v1"},
+              "witness_scale": {"const": "18446744073709551616"},
+              "numerator_witness": {"$ref": "#/$defs/witnessTree"},
+              "reduced": {
+                "type": "object", "required": ["constant", "linear", "denominator"],
+                "properties": {"constant": {"$ref": "#/$defs/polynomial"}, "linear": {"$ref": "#/$defs/polynomial"}, "denominator": {"$ref": "#/$defs/polynomial"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object", "required": ["id", "polynomials", "rationals", "intervals", "checks"],
+      "properties": {
+        "id": {"type": "string"},
+        "variables": {"type": "array", "items": {"type": "string"}},
+        "polynomials": {"type": "object", "additionalProperties": {"$ref": "#/$defs/polynomial"}},
+        "rationals": {"type": "object", "additionalProperties": {"$ref": "#/$defs/rationalFunction"}},
+        "intervals": {"type": "object", "additionalProperties": {"$ref": "#/$defs/interval"}},
+        "checks": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "manifest": {
+      "type": "object", "required": ["format", "version", "schema", "members"],
+      "properties": {
+        "format": {"const": "HEAVY_BALL_PART1_PROOF"}, "version": {"const": 1},
+        "schema": {"$ref": "#/$defs/schemaVersion"},
+        "provenance": {
+          "type": "object", "required": ["verification_scope", "fresh_verification"],
+          "properties": {
+            "verification_scope": {"enum": ["current-producer", "historical-import"]},
+            "fresh_verification": {"type": "boolean"}
+          },
+          "allOf": [{"if": {"properties": {"verification_scope": {"const": "historical-import"}}},
+                     "then": {"properties": {"fresh_verification": {"const": false}}}}]
+        },
+        "members": {
+          "type": "object", "required": ["schema.json", "mathematics.json", "interval-p1.json", "interval-central.json", "checks.json"],
+          "propertyNames": {"enum": ["schema.json", "mathematics.json", "interval-p1.json", "interval-central.json", "checks.json", "interval-p2.json"]},
+          "additionalProperties": {
+            "type": "object", "required": ["bytes", "sha256"], "additionalProperties": false,
+            "properties": {"bytes": {"type": "integer", "minimum": 0}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+          }
+        }
+      }
+    },
+    "mathematics": {
+      "type": "object", "required": ["schema", "kind", "groups"],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schemaVersion"}, "kind": {"const": "mathematical-data"},
+        "groups": {
+          "type": "object", "required": ["core", "p2", "p5", "startup"], "additionalProperties": false,
+          "properties": {"core": {"$ref": "#/$defs/group"}, "p2": {"$ref": "#/$defs/group"}, "p5": {"$ref": "#/$defs/group"}, "startup": {"$ref": "#/$defs/startup"}}
+        }
+      }
+    },
+    "continuation": {
+      "type": "object", "required": ["schema", "kind", "family", "parameter", "unknown_order", "source_equations", "parameter_domain", "boxes"],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schemaVersion"}, "kind": {"const": "parametric-krawczyk-proposals"},
+        "family": {"enum": ["p1", "p2", "central"]}, "parameter": {"type": "string"},
+        "unknown_order": {"type": "array", "items": {"type": "string"}},
+        "source_equations": {"type": "array", "items": {"type": "string"}},
+        "parameter_domain": {"$ref": "#/$defs/interval"},
+        "boxes": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["parameter", "centre", "radii", "inverse"],
+            "properties": {
+              "parameter": {"$ref": "#/$defs/interval"},
+              "centre": {"type": "array", "items": {"$ref": "#/$defs/rational"}},
+              "radii": {"type": "array", "items": {"$ref": "#/$defs/rational"}},
+              "inverse": {"type": "array", "items": {"type": "array", "items": {"$ref": "#/$defs/rational"}}}
+            }
+          }
+        }
+      }
+    },
+    "checkReport": {
+      "type": "object", "required": ["schema", "kind", "results"],
+      "properties": {
+        "schema": {"$ref": "#/$defs/schemaVersion"}, "kind": {"const": "structured-external-check-report"},
+        "historical": {"type": "boolean"}, "results": {"type": "array", "items": {"type": "object"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+.venv/
+
+# Reproducible experiment data, figures and certification evidence.
+# Keep all Python generators and their hand-maintained input data visible.
+/data/
+/verification/
+/figures/pdf/
+/figures/png/
+/part1/boxes/
+/part1/certification/generated/
+/part1/certification/validation/
+/part2/certification/generated/
+/part1/proof/manifest.json
+/part2/proof/manifest.json
+*.pdf
+*.png
+*.svg
+*.npz
+*.log
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+
+# Proof archives are distribution sources, including after a fresh regeneration.
+!/part1/proof/
+!/part2/proof/
+!/part1/proof/proof.tar.xz
+!/part2/proof/proof.tar.xz

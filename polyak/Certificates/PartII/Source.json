@@ -1,0 +1,7 @@
+{
+  "format": "POLYNOMIAL_REALIZATIONS_CERTIFICATE_SOURCE",
+  "archive_path": "polyak-code/part2/proof/proof.tar.xz",
+  "archive_bytes": 11084,
+  "archive_sha256": "f67d4f68d1adfad2f979625bfae75f2c94915aad73d428310e9f388ad35bc559",
+  "transport": "local"
+}

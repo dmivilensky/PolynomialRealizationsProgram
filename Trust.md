@@ -1,37 +1,27 @@
-# Proof dependencies
+# Proof trust
 
-The complete checks select declarations by their defining module, including
-private declarations and generated names outside the article namespace.
-They inspect types and proof bodies directly and compare that result with
-Lean's stored transitive axiom report. Every article source must be imported.
+The proofs in `chebyshev1`, `chebyshev2` and `polyak` permit only three
+transitive axioms: `propext`, `Classical.choice` and `Quot.sound`.
+Dependencies on `sorryAx`, native reduction axioms and other runtime axioms
+are rejected. An axiom's presence in the imported environment does not mean
+the proofs use it.
 
-The proofs of 2606.16671v2 and 2610.05164v2 use:
+The shared [audit](Tools/Verification/Audit.lean) checks every declaration
+owned by the package's modules, including private and generated declarations.
+It verifies that every Lean source is imported and compares Lean's axiom
+report with a direct traversal of types and proof bodies.
 
-| Axiom | Meaning |
-| --- | --- |
-| `propext` | Propositional extensionality |
-| `Classical.choice` | Classical choice |
-| `Quot.sound` | Equality of quotient classes |
+Unsafe declarations are rejected except for one generated witness-proposal
+helper in `chebyshev1.Numerics.EnergyWitnessGenerator`, explicitly allowed by
+[its check](chebyshev1/Check.lean). Its proposed data and proofs are checked
+by the kernel; mathematical theorems cannot depend on the unsafe helper.
 
-The imported environment also declares the following axioms/runtime primitives.
-Their presence is distinct from their use by a mathematical proof; the audit
-rejects any dependency on them.
+Python computations and numerical solvers propose certificate data.
+Lean checks the exact arithmetic and its connection to the source formulas.
+Archive hashes establish byte identity, not mathematical validity; Polyak's
+archive readers accept JSON data and never execute archive-supplied code.
 
-| Imported declaration | Role |
-| --- | --- |
-| `sorryAx` | Placeholder for an unfinished proof |
-| `Lean.ofReduceBool`, `Lean.ofReduceNat`, `Lean.trustCompiler` | Compiler/native reduction trust mechanisms |
-| `isScalarObj`, `lcAny`, `lcCast`, `lcErased`, `lcProof`, `lcUnreachable`, `lcVoid`, `Quot.lcInv` | Runtime/compiler primitives |
-
-`Numerics/EnergyWitnessGenerator` in 2606.16671v2 contains an automatically
-created unsafe runtime helper for witness proposals. The audit permits unsafe
-code only in that module, reports its names, and audits all its safe outputs.
-The tactic proposes literal integer intervals, adds safe data definitions,
-constructs kernel-reduction proofs of their acceptance, and composes those proofs.
-No mathematical theorem can depend on the unsafe helper. External Python
-proposals for 2610.05164v2 are treated the same way: only kernel-checked
-arithmetic and proved ODE/quadrature bounds enter the final theorem.
-
-`Scripts/Replay.lean` is an optional executable using Lean's stock kernel replay;
-it is not imported by either mathematical library. Elaborators, audits and
-witness proposal code are tooling, not added mathematical axioms.
+Optional [kernel replay](Tools/Verification/Replay.lean) rechecks compiled
+declarations using Lean's kernel against their external dependencies.
+Correspondence between the formal statements and the articles requires
+mathematical review in addition to compilation.

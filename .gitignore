@@ -4,3 +4,40 @@
 __pycache__/
 .DS_Store
 *.pyc
+Exploration
+LeanBook
+*.log
+*.olean
+Tools/Typesetting
+/.ruff_cache
+
+# Local publication notes and recoverable documentation snapshots.
+/.publication-local/
+
+# Packages outside this GitHub publication (keep their local sources).
+/jacobi/
+/jacobi.*
+/krylov/
+/krylov.*
+/krylov-code/
+/Tools/Certificates/KrylovHalf.py
+/Tools/Certificates/KrylovDeepProposals.py
+
+# Local environments and TeX build products.
+.venv/
+.pytest_cache/
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+
+chebyshev1.tex
+chebyshev2.tex
+polyak.tex
+
+# Local article submission/build directory.
+/topublish/
+/topublish.*
