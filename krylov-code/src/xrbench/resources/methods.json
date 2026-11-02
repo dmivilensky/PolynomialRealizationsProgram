@@ -1,0 +1,248 @@
+[
+  {
+    "id": "XR",
+    "method": "XR",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F",
+    "method": "XR-F",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": true,
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "L-BFGS",
+    "method": "L-BFGS",
+    "module": "xrbench.methods.lbfgs_scipy",
+    "params": {
+      "m": 20,
+      "maxls": 20
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "L-BFGS",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "L-CG_DESCENT",
+    "method": "L-CG_DESCENT",
+    "module": "xrbench.methods.cgdescent",
+    "params": {
+      "memory": 11
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "L-CG_DESCENT",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "MS-L-BFGS",
+    "method": "MS-L-BFGS",
+    "module": "xrbench.methods.competitors_native",
+    "params": {
+      "m": 8,
+      "M": 8,
+      "exact_last": false,
+      "native_method": "mslbfgs"
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "MS-L-BFGS",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "SC-MSS",
+    "method": "SC-MSS",
+    "module": "xrbench.methods.competitors_native",
+    "params": {
+      "m": 3,
+      "mode": "tr",
+      "init": "dense",
+      "tr_norm": "linf",
+      "q": 5,
+      "native_method": "mss"
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "SC-MSS",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "L-SR1",
+    "method": "L-SR1",
+    "module": "xrbench.methods.competitors_native",
+    "params": {
+      "m": 5,
+      "q": 7,
+      "gamma": "max",
+      "tr_norm": "linf",
+      "native_method": "sr1"
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "L-SR1",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "O-ACCEL",
+    "method": "O-ACCEL",
+    "module": "xrbench.methods.competitors_native",
+    "params": {
+      "nonlinear": "oaccel",
+      "precond": "B",
+      "wmax": 20,
+      "delta": 0.0001,
+      "native_method": "oaccel"
+    },
+    "kind": "practical",
+    "role": "practical",
+    "family": "O-ACCEL",
+    "ours": false,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/F-off",
+    "method": "XR-F/F-off",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": false,
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/fixed-memory",
+    "method": "XR-F/fixed-memory",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 10,
+      "values": true,
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/positive-only",
+    "method": "XR-F/positive-only",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": true,
+      "window": "positive",
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/no-probe",
+    "method": "XR-F/no-probe",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": true,
+      "probe": false,
+      "trial": "secant",
+      "floor": false
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/midpoint-trial",
+    "method": "XR-F/midpoint-trial",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": true,
+      "trial": "midpoint",
+      "floor": true
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  },
+  {
+    "id": "XR-F/lagged-trial",
+    "method": "XR-F/lagged-trial",
+    "module": "xrbench.methods.xr_native",
+    "params": {
+      "m0": 10,
+      "m_max": 100,
+      "values": true,
+      "trial": "lagged",
+      "floor": false
+    },
+    "kind": "ablation",
+    "role": "ablation",
+    "family": "XR",
+    "ours": true,
+    "restrictions": {},
+    "sources": []
+  }
+]

@@ -1,60 +1,23 @@
-"""Check an explicit article-coverage review, independently of source import coverage.
+"""Check a reviewed correspondence map against its Lean showcase.
 
 A reviewed correspondence is not a proof of equivalence of mathematical prose and
-Lean types. Lean checks the referenced proofs; this tool detects stale source
-reviews, omitted numbered claims and explicitly outstanding obligations. It never
+Lean types. Lean checks the referenced proofs; this tool detects inconsistent
+inventories, omitted reviewed claims and explicitly outstanding obligations. It never
 infers full article coverage from a successful build or from a declaration count.
+The inputs are the review record and Lean sources; manuscripts are not inputs.
 """
 import argparse
-import hashlib
 from pathlib import Path
 import re
 
 from .Project import lean_code, name_parts, select_projects
 from .CheckCorrespondence import check_showcase
 
-MAP_SOURCE = re.compile(r"^<!-- article-source: (\S+) sha256=([0-9a-f]{64}) -->$", re.M)
+MAP_REVIEW = re.compile(r"^<!-- article-review -->$", re.M)
 MAP_CLAIM = re.compile(
     r"^(Theorem|Lemma|Proposition|Corollary|Definition) ([A-Z0-9]+\.\d+)"
     r"(?: — (.*?))? \(`([^`]+)`\)$")
 MAP_PROSE = re.compile(r"^- `([^`]+)` — (.+)$", re.M)
-
-
-def ordered_claims(raw):
-    """Read the shared section theorem counter used by a flattened article.
-
-    This review format deliberately uses the ordinary amsthm setup of these
-    articles: a counter shared by results, definitions and numbered remarks,
-    reset at sections, with lettered sections after \\appendix. The pinned
-    source includes the preamble; changing the numbering invalidates review.
-    """
-    text = re.sub(r"(?<!\\)%[^\n]*", "", raw)
-    token = re.compile(
-        r"\\section(\*?)\{[^}]*\}|\\appendix\b|"
-        r"\\begin\{(theorem|lemma|proposition|corollary|definition|remark|assumption|example)\}"
-        r"(?:\[([^\]]*)\])?(.*?)\\end\{\2\}", re.S)
-    result = []
-    section, counter, appendix = 0, 0, False
-    for match in token.finditer(text):
-        if match[0].startswith(r"\appendix"):
-            section, counter, appendix = 0, 0, True
-        elif match[0].startswith(r"\section"):
-            if not match[1]:
-                section += 1
-                counter = 0
-        else:
-            counter += 1
-            if match[2] not in ("theorem", "lemma", "proposition", "corollary", "definition"):
-                continue
-            labels = re.findall(r"\\label\{([^}]+)\}", match[4])
-            if not labels:
-                raise ValueError("Unlabelled article result requires an explicit coverage identifier")
-            prefix = chr(64 + section) if appendix else str(section)
-            result.append({"label": labels[0], "kind": match[2], "title": match[3] or "",
-                           "number": f"{prefix}.{counter}"})
-    if len({item["label"] for item in result}) != len(result):
-        raise ValueError("Duplicate article claim")
-    return result
 
 
 def _map_review(project, path):
@@ -63,20 +26,13 @@ def _map_review(project, path):
     No second inventory or per-package JSON file is necessary. Ordered rows
     identify PDF number, TeX label, title and exact declarations. Prose bullets
     retain the additional unnumbered obligations and their audited modules.
-    The source digest is a human review seal, not a mathematical axiom.
     """
     raw = path.read_text()
-    pins = MAP_SOURCE.findall(raw)
-    if not pins:
+    markers = MAP_REVIEW.findall(raw)
+    if not markers:
         return None
-    if len(dict(pins)) != len(pins):
-        raise ValueError("Duplicate article source pin")
-    actual = []
-    for name, digest in pins:
-        source = _local(project.workspace, name)
-        if hashlib.sha256(source.read_bytes()).hexdigest() != digest:
-            raise ValueError(f"Stale article coverage review: {name}")
-        actual.extend({**claim, "source": name} for claim in ordered_claims(source.read_text()))
+    if len(markers) != 1:
+        raise ValueError("Duplicate article review marker")
     entries = []
     for row in raw.splitlines():
         if not row.startswith("| ") or row.startswith(("| Article |", "| ---")):
@@ -89,10 +45,13 @@ def _map_review(project, path):
             raise ValueError(f"Invalid numbered article map row: {columns[1]}")
         entries.append({"label": match[4], "kind": match[1].lower(), "number": match[2],
                         "title": match[3] or "", "links": columns[2], "meaning": columns[3]})
-    keys = ("label", "kind", "number", "title")
-    if [[item[k] for k in keys] for item in entries] != [
-            [item[k] for k in keys] for item in actual]:
-        raise ValueError("Article claim inventory differs in labels, order, numbers, kinds or titles")
+    counts = re.findall(r"^<!-- article-numbered-count: (\d+) -->$", raw, re.M)
+    if len(counts) != 1 or not entries or len(entries) != int(counts[0]):
+        raise ValueError("Reviewed numbered claim inventory differs")
+    if len({item['label'] for item in entries}) != len(entries):
+        raise ValueError("Duplicate reviewed claim label")
+    if len({item['number'] for item in entries}) != len(entries):
+        raise ValueError("Duplicate reviewed claim number")
     # This also enforces exact declaration order and all file links in the showcase.
     check_showcase(project)
     showcase = (project.directory / "Article.lean").read_text()
@@ -101,13 +60,13 @@ def _map_review(project, path):
         r"([A-Z0-9]+\.\d+) \[([^\]]+)\]")
     markers = list(block_pattern.finditer(showcase))
     if [m.groups() for m in markers] != [
-            (item["kind"].title(), item["number"], item["label"]) for item in actual]:
-        raise ValueError("Showcase comments differ from the numbered article order")
-    for marker, item in zip(markers, actual):
+            (item["kind"].title(), item["number"], item["label"]) for item in entries]:
+        raise ValueError("Showcase comments differ from the reviewed numbered order")
+    for marker, item in zip(markers, entries):
         caption = showcase[marker.end():].splitlines()[0].split("-/", 1)[0].rstrip()
         expected = ". " + item["title"] + "." if item["title"] else "."
         if caption != expected:
-            raise ValueError(f"Showcase title differs from the article: {item['label']}")
+            raise ValueError(f"Showcase title differs from the reviewed map: {item['label']}")
     code = lean_code(showcase)
     if re.search(r"^#check\b", code[:markers[0].start()] if markers else code, re.M):
         raise ValueError("Showcase signature outside its numbered article block")
@@ -144,8 +103,8 @@ def _map_review(project, path):
                 raise ValueError(f"Coverage reference outside package audit: {link}")
     if re.search(r"<!-- article-unresolved:", raw):
         raise ValueError("Incomplete article coverage: explicitly unresolved correspondence")
-    print(f"{project.relative}: article map {len(entries)}/{len(actual)} ordered numbered claims; "
-          f"{len(prose)} unnumbered groups; source review current.", flush=True)
+    print(f"{project.relative}: reviewed map {len(entries)} ordered numbered claims; "
+          f"{len(prose)} unnumbered groups; map and Lean showcase consistent.", flush=True)
     return {"numbered_claims": len(entries), "verified_numbered_claims": len(entries),
             "unnumbered_groups": len(prose)}
 

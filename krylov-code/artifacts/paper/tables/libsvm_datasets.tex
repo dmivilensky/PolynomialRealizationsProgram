@@ -1,0 +1,21 @@
+% Generated from the current campaign; do not edit by hand.
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{llrrl}
+\hline
+Dataset & Structure & Observations & Features & Storage \\
+\hline
+a9a & Moderate dimension & 32,561 & 123 & csr \\
+w8a & Moderate dimension & 49,749 & 300 & csr \\
+covtype.binary & Many observations & 581,012 & 54 & dense \\
+madelon & Dense, high dimension & 2,000 & 500 & dense \\
+epsilon & Dense, high dimension & 400,000 & 2,000 & dense \\
+gisette & Dense, high dimension & 6,000 & 5,000 & dense \\
+real-sim & Sparse, high dimension & 72,309 & 20,958 & csr \\
+rcv1.binary & Sparse, high dimension & 20,242 & 47,236 & csr \\
+\hline
+\end{tabular}
+\caption{Binary classification datasets for regularized logistic regression. Features exclude the appended intercept. Every nonzero feature row has unit Euclidean norm; all coefficients, including the intercept, are regularized. Each dataset uses the same frozen regularization grid and the zero initial point.}
+\label{tab:xr-libsvm-datasets}
+\end{table}

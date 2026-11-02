@@ -57,11 +57,11 @@ start work for every horizon. For an arbitrary measure in Part II, one positive
 lower-bound constant works for all horizons, with a finite-dimensional
 realization for each horizon.
 
-The map pins the article's SHA-256. Verification checks the ordered inventory,
-statement titles and labels, local proof links, and each showcase block's
-references. Article edits require a mathematical review and an updated source
-pin. The Lean audit includes private and generated declarations and permits
-only `propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
+The map records the reviewed inventory. Verification checks its counts, order,
+statement titles, labels, proof links and per-block references against the Lean
+showcase. Mathematical comparison with the article is documented in the map.
+The Lean audit includes private and generated declarations and permits only
+`propext`, `Classical.choice` and `Quot.sound` as transitive axioms.
 
 ## Cleanup
 

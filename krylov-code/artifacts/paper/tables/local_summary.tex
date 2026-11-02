@@ -1,0 +1,25 @@
+% Generated from the current campaign; do not edit by hand.
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{rrlrr}
+\hline
+$n$ & $\kappa$ & Method & Med. $N_g/n$ & First full $N_g/n$ \\
+\hline
+5 & 10 & XR & 2.2 & 1.4 \\
+5 & 10 & XR-F & 2.6 & 1.4 \\
+5 & 100 & XR & 2.8 & 1.8 \\
+5 & 100 & XR-F & 2.8 & 1.8 \\
+10 & 10 & XR & 1.7 & 1.3 \\
+10 & 10 & XR-F & 1.7 & 1.3 \\
+10 & 100 & XR & 1.9 & 1.3 \\
+10 & 100 & XR-F & 1.9 & 1.3 \\
+20 & 10 & XR & 1.3 & 1.2 \\
+20 & 10 & XR-F & 1.3 & 1.2 \\
+20 & 100 & XR & 1.25 & 1.15 \\
+20 & 100 & XR-F & 1.45 & 1.15 \\
+\hline
+\end{tabular}
+\caption{Full-memory local study over 10 seeds per dimension and condition number. The target relative stationary-Hessian norm is $10^{-12}$; $\varepsilon=0.1$, initial base energy $0.03$. Costs are medians of actual gradient evaluations divided by $n$. First full is the first accepted step whose model uses $n$ retained pairs. All 120 runs reach the target and use a full window.}
+\label{tab:xr-local-diagnostic}
+\end{table}

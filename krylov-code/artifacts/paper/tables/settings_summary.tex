@@ -1,0 +1,28 @@
+% Generated from the current campaign; do not edit by hand.
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\hline
+Method & Setting & Solved & Both solved & $N_g^{\mathrm{variant}}/N_g^{\mathrm{base}}$ & Variant only & Base only \\
+\hline
+XR & m0=5 & 15/16 & 15 & 1.086 & 0 & 1 \\
+XR & m0=10 (base) & 16/16 & 16 & 1.000 & 0 & 0 \\
+XR & m0=20 & 15/16 & 15 & 1.210 & 0 & 1 \\
+XR-F & m0=5 & 16/16 & 15 & 1.297 & 1 & 0 \\
+XR-F & m0=10 (base) & 15/16 & 15 & 1.000 & 0 & 0 \\
+XR-F & m0=20 & 14/16 & 14 & 0.920 & 0 & 1 \\
+L-BFGS & m=5 & 12/16 & 11 & 1.115 & 1 & 0 \\
+L-BFGS & m=10 & 11/16 & 11 & 1.076 & 0 & 0 \\
+L-BFGS & m=20 (base) & 11/16 & 11 & 1.000 & 0 & 0 \\
+L-CG\_DESCENT & m=5 & 16/16 & 16 & 1.121 & 0 & 0 \\
+L-CG\_DESCENT & m=11 (base) & 16/16 & 16 & 1.000 & 0 & 0 \\
+L-CG\_DESCENT & m=20 & 16/16 & 16 & 0.882 & 0 & 0 \\
+MS-L-BFGS & L8M2 & 13/16 & 12 & 0.910 & 1 & 2 \\
+MS-L-BFGS & L8M4 & 15/16 & 14 & 0.862 & 1 & 0 \\
+MS-L-BFGS & L8M8 (base) & 14/16 & 14 & 1.000 & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Fixed-parameter sensitivity on 16 CUTEst instances. Ratios are geometric means of $N_g^{\mathrm{variant}}/N_g^{\mathrm{base}}$ on instances solved by both settings. Base settings are marked in each method family. Variant only and Base only count exclusive successes. XR and XR-F use memory cap 100 and vary $m_0$; MS-L-BFGS stores eight pairs and varies its simultaneous-secant limit.}
+\label{tab:xr-settings}
+\end{table}

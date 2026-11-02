@@ -1,10 +1,17 @@
 # PolynomialRealizationsProgram
 
-Lean proofs for [chebyshev1](chebyshev1/README.md),
-[chebyshev2](chebyshev2/README.md), and [polyak](polyak/README.md).
+Lean proofs for [bezout](bezout/README.md), [chebyshev1](chebyshev1/README.md),
+[chebyshev2](chebyshev2/README.md), [jacobi](jacobi/README.md),
+[krylov](krylov/README.md), and [polyak](polyak/README.md).
 Definitions and intermediate lemmas live under the corresponding article name.
 The second Chebyshev package reuses the first; Polyak also uses their exact
 arithmetic and interval checkers.
+The [jacobi package](jacobi/README.md) formalizes
+[Resolvent-Diagonal Energy of Isospectral Jacobi Matrices](jacobi.pdf).
+The [krylov package](krylov/README.md) formalizes
+[Adaptive Krylov Methods under Hessian Variation](krylov.pdf);
+[krylov-code](krylov-code/README.md) contains its numerical solvers,
+experiments and the figures and tables used by the article.
 The [polyak package](polyak/README.md) formalizes
 [Two Answers on Heavy-Ball Dynamics](polyak.pdf), with its own build and complete
 source/axiom audit. Its [ordered showcase](polyak/Article.lean) and
@@ -16,6 +23,13 @@ through [Part I Source.json](polyak/Certificates/Source.json) and
 Polyak reads both archives locally from `polyak-code`; they stay in that
 package. Chebyshev II retains
 its pinned external certificate source.
+
+The [bezout package](bezout/README.md) formalizes
+[Chebyshev-Exact Acceleration under Gradient Variation](bezout.pdf): the exact
+Flat and Balanced optima, their physical register algorithms, and the symbolic
+competitor and finite-noise comparisons. Its [correspondence](bezout/ArticleMap.md)
+connects the article to checked signatures; it uses analytic imports without
+numerical proof archives.
 
 Mathematical sources stay in their article packages. Shared tooling lives in:
 
@@ -38,8 +52,11 @@ certificate inputs register their local converters separately in
 
 ```sh
 lake exe cache get
+python3 -m Tools.Verification.Check bezout --offline --require-complete --replay
 python3 -m Tools.Verification.Check chebyshev1
 python3 -m Tools.Verification.Check chebyshev2
+python3 -m Tools.Verification.Check jacobi
+python3 -m Tools.Verification.Check krylov --require-complete
 python3 -m Tools.Verification.Check polyak
 ```
 
@@ -80,12 +97,13 @@ requests the full package instead.
 
 The [showcases](polyak/Article.lean) and [correspondence tables](polyak/ArticleMap.md)
 record manual comparison with the article PDFs. Automation checks their local Lean
-links and agreement with each other. A map with a pinned `article-source` also
-checks every result's order, number, label, kind and title, the unnumbered
-inventory, and whether changes to the article invalidate its review. Semantic
-equivalence still requires mathematical comparison of the statements and Lean
-types; compilation alone does not establish it. The maps are optional for a
-plain Lean package. [Trust.md](Trust.md) explains the actual axiom checks.
+links and agreement with each other. A reviewed map records the number of numbered
+and unnumbered items; verification checks their order, numbers, labels, kinds,
+titles and per-block declaration references against the Lean showcase.
+The verification inputs are Lean sources, certificate archives and correspondence
+maps. Mathematical comparison with the articles is recorded in the maps.
+The maps are optional for a plain Lean package. [Trust.md](Trust.md) explains
+the axiom checks.
 
 Package-specific witness generation remains under `Tools/Certificates`.
 Chebyshev II automatically fetches its pinned GitHub archive and reconstructs

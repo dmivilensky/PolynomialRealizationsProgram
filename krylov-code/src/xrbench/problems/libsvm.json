@@ -1,0 +1,15 @@
+{
+  "source": "https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html",
+  "normalization": "Each nonzero feature row has unit Euclidean norm; an intercept is appended and regularized.",
+  "regularization": [0.01, 0.0001, 0.000001],
+  "datasets": [
+    {"name": "a9a", "file": "a9a", "rows": 32561, "features": 123, "storage": "csr", "group": "moderate"},
+    {"name": "w8a", "file": "w8a", "rows": 49749, "features": 300, "storage": "csr", "group": "moderate"},
+    {"name": "covtype.binary", "file": "covtype.libsvm.binary.scale.bz2", "rows": 581012, "features": 54, "storage": "dense", "group": "many-samples"},
+    {"name": "madelon", "file": "madelon", "rows": 2000, "features": 500, "storage": "dense", "group": "dense-highdim"},
+    {"name": "gisette", "file": "gisette_scale.bz2", "rows": 6000, "features": 5000, "storage": "dense", "group": "dense-highdim"},
+    {"name": "epsilon", "file": "epsilon_normalized.bz2", "rows": 400000, "features": 2000, "storage": "dense", "group": "dense-highdim"},
+    {"name": "rcv1.binary", "file": "rcv1_train.binary.bz2", "rows": 20242, "features": 47236, "storage": "csr", "group": "sparse-highdim"},
+    {"name": "real-sim", "file": "real-sim.bz2", "rows": 72309, "features": 20958, "storage": "csr", "group": "sparse-highdim"}
+  ]
+}

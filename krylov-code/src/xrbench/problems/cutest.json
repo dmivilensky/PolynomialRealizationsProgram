@@ -1,0 +1,2277 @@
+{
+  "description": "Union of existing unconstrained CUTEst instances, deduplicated by name and SIF parameters; restores the two instances previously excluded solely for oracle cost. Grouping uses actual n; degree means supplied derivative order.",
+  "problems": [
+    {
+      "name": "10FOLDTRLS",
+      "sif": null,
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINA",
+      "sif": {
+        "N": 100,
+        "M": 400
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINA",
+      "sif": {
+        "N": 200,
+        "M": 400
+      },
+      "n": 200,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINB",
+      "sif": {
+        "N": 100,
+        "M": 400
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINB",
+      "sif": {
+        "N": 200,
+        "M": 400
+      },
+      "n": 200,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINC",
+      "sif": {
+        "N": 100,
+        "M": 400
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGLINC",
+      "sif": {
+        "N": 200,
+        "M": 400
+      },
+      "n": 200,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGTRIGLS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARGTRIGLS",
+      "sif": {
+        "N": 200
+      },
+      "n": 200,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ARWHEAD",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "ARWHEAD",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BA-L1LS",
+      "sif": null,
+      "n": 57,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BA-L1SPLS",
+      "sif": null,
+      "n": 57,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BDQRTIC",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BDQRTIC",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BOX",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BOX",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BOXPOWER",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BOXPOWER",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BROWNAL",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BROWNAL",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BROYDN3DLS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BROYDN3DLS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BROYDN7D",
+      "sif": {
+        "N/2": 50
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BROYDN7D",
+      "sif": {
+        "N/2": 500
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "BROYDNBDLS",
+      "sif": {
+        "N": 100,
+        "LB": 5,
+        "UB": 1
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BROYDNBDLS",
+      "sif": {
+        "N": 1000,
+        "LB": 5,
+        "UB": 1
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BRYBND",
+      "sif": {
+        "N": 100,
+        "LB": 5,
+        "UB": 1
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "BRYBND",
+      "sif": {
+        "N": 1000,
+        "LB": 5,
+        "UB": 1
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CHAINWOO",
+      "sif": {
+        "NS": 49
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CHAINWOO",
+      "sif": {
+        "NS": 499
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CHNROSNB",
+      "sif": {
+        "N": 50
+      },
+      "n": 50,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CHNRSNBM",
+      "sif": {
+        "N": 50
+      },
+      "n": 50,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "COATING",
+      "sif": null,
+      "n": 134,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "COSINE",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "COSINE",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CRAGGLVY",
+      "sif": {
+        "M": 49
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CRAGGLVY",
+      "sif": {
+        "M": 499
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY10",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY10",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY20",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY20",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY30",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CURLY30",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "CYCLIC3LS",
+      "sif": {
+        "N": 100
+      },
+      "n": 102,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CYCLIC3LS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1002,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CYCLOOCFLS",
+      "sif": {
+        "P": 100
+      },
+      "n": 296,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "CYCLOOCFLS",
+      "sif": {
+        "P": 1000
+      },
+      "n": 2996,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DIAMON2DLS",
+      "sif": null,
+      "n": 66,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DIAMON3DLS",
+      "sif": null,
+      "n": 99,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANA1",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANA1",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANB",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANB",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANC",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANC",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAAND",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAAND",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANE1",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANE1",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANF",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANF",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANG",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANG",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANH",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANH",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANI1",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANI1",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANJ",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANJ",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANK",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANK",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANL",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANL",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANM1",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANM1",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANN",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANN",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANO",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANO",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANP",
+      "sif": {
+        "M": 30
+      },
+      "n": 90,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXMAANP",
+      "sif": {
+        "M": 500
+      },
+      "n": 1500,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DIXON3DQ",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "DIXON3DQ",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "DMN15102LS",
+      "sif": null,
+      "n": 66,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DMN15103LS",
+      "sif": null,
+      "n": 99,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DMN15332LS",
+      "sif": null,
+      "n": 66,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DMN15333LS",
+      "sif": null,
+      "n": 99,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DMN37142LS",
+      "sif": null,
+      "n": 66,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DMN37143LS",
+      "sif": null,
+      "n": 99,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "DQDRTIC",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "DQDRTIC",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "DQRTIC",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "DQRTIC",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "EDENSCH",
+      "sif": {
+        "N": 2000
+      },
+      "n": 2000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "EG2",
+      "sif": null,
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "EIGENALS",
+      "sif": {
+        "N": 10
+      },
+      "n": 110,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EIGENALS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2550,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EIGENBLS",
+      "sif": {
+        "N": 10
+      },
+      "n": 110,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EIGENBLS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2550,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EIGENCLS",
+      "sif": {
+        "M": 10
+      },
+      "n": 462,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ENGVAL1",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "ENGVAL1",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "ERRINROS",
+      "sif": {
+        "N": 50
+      },
+      "n": 50,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "ERRINRSM",
+      "sif": {
+        "N": 50
+      },
+      "n": 50,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EXTROSNB",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "EXTROSNB",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "FLETBV3M",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETBV3M",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCBV2",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCBV2",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCBV3",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCBV3",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCHBV",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCHBV",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCHCR",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FLETCHCR",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FMINSRF2",
+      "sif": {
+        "P": 11
+      },
+      "n": 121,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FMINSRF2",
+      "sif": {
+        "P": 32
+      },
+      "n": 1024,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FMINSURF",
+      "sif": {
+        "P": 11
+      },
+      "n": 121,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FMINSURF",
+      "sif": {
+        "P": 32
+      },
+      "n": 1024,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "FREUROTH",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "FREUROTH",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "GENHUMPS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "GENHUMPS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "GENROSE",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "GENROSE",
+      "sif": {
+        "N": 500
+      },
+      "n": 500,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "HILBERTB",
+      "sif": {
+        "N": 50
+      },
+      "n": 50,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "HYDC20LS",
+      "sif": null,
+      "n": 99,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "INDEF",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "INDEF",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "INDEFM",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "INDEFM",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "INTEQNELS",
+      "sif": {
+        "N": 100
+      },
+      "n": 102,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "INTEQNELS",
+      "sif": {
+        "N": 500
+      },
+      "n": 502,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "JIMACK",
+      "sif": {
+        "M": 2,
+        "N": 12
+      },
+      "n": 1521,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "KSSLS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "KSSLS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LIARWHD",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LIARWHD",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LRA9A",
+      "sif": null,
+      "n": 123,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "LRW1A",
+      "sif": null,
+      "n": 300,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "LRW8A",
+      "sif": null,
+      "n": 300,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN11LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN12LS",
+      "sif": null,
+      "n": 98,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN13LS",
+      "sif": null,
+      "n": 98,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN14LS",
+      "sif": null,
+      "n": 98,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN15LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN16LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN17LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN21LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN22LC",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "LUKSAN22LS",
+      "sif": null,
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MANCINO",
+      "sif": {
+        "N": 100,
+        "ALPHA": 5,
+        "GAMMA": 3
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MODBEALE",
+      "sif": {
+        "N/2": 100
+      },
+      "n": 200,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MODBEALE",
+      "sif": {
+        "N/2": 1000
+      },
+      "n": 2000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MOREBV",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MOREBV",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MSQRTALS",
+      "sif": {
+        "P": 10
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MSQRTALS",
+      "sif": {
+        "P": 32
+      },
+      "n": 1024,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MSQRTBLS",
+      "sif": {
+        "P": 10
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "MSQRTBLS",
+      "sif": {
+        "P": 32
+      },
+      "n": 1024,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "NCB20",
+      "sif": {
+        "N": 100
+      },
+      "n": 110,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NCB20",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1010,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NCB20B",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NCB20B",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONCVXU2",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONCVXU2",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONCVXUN",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONCVXUN",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONDIA",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "NONDIA",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "NONDQUAR",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONDQUAR",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "NONMSQRT",
+      "sif": {
+        "P": 10
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "NONMSQRT",
+      "sif": {
+        "P": 32
+      },
+      "n": 1024,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "OSCIGRAD",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "OSCIGRAD",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "OSCIPATH",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "OSCIPATH",
+      "sif": {
+        "N": 500
+      },
+      "n": 500,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY1",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY1",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY2",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY2",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY3",
+      "sif": {
+        "N/2": 50
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "PENALTY3",
+      "sif": {
+        "N/2": 100
+      },
+      "n": 200,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "POWELLSG",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "POWELLSG",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "POWER",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "POWER",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "QING",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "QING",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "QUARTC",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "QUARTC",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SBRYBND",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SBRYBND",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SCHMVETT",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCHMVETT",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCOSINE",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCOSINE",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY10",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY10",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY20",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY20",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY30",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SCURLY30",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SENSORS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SENSORS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SINQUAD",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SINQUAD",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SINQUAD2",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SINQUAD2",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SPARSINE",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SPARSINE",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SPARSQUR",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SPARSQUR",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SPIN2LS",
+      "sif": {
+        "N": 50
+      },
+      "n": 102,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SPINLS",
+      "sif": {
+        "N": 15
+      },
+      "n": 137,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SPINLS",
+      "sif": {
+        "N": 45
+      },
+      "n": 1082,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SPMSRTLS",
+      "sif": {
+        "M": 34
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SPMSRTLS",
+      "sif": {
+        "M": 334
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SROSENBR",
+      "sif": {
+        "N/2": 50
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SROSENBR",
+      "sif": {
+        "N/2": 500
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SSBRYBND",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SSBRYBND",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "SSCOSINE",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "SSCOSINE",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "STRTCHDV",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "STRTCHDV",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TESTQUAD",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "TOINTGOR",
+      "sif": null,
+      "n": 50,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "TOINTGSS",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "TOINTGSS",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "TOINTPSP",
+      "sif": null,
+      "n": 50,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "TOINTQOR",
+      "sif": null,
+      "n": 50,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "TQUARTIC",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TQUARTIC",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TRIDIA",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "TRIDIA",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "quadratic",
+      "degree": 2
+    },
+    {
+      "name": "TRIGON1",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TRIGON1",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TRIGON2",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "TRIGON2",
+      "sif": {
+        "N": 1000
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "VARDIM",
+      "sif": {
+        "N": 100
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "VARDIM",
+      "sif": {
+        "N": 200
+      },
+      "n": 200,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "VAREIGVL",
+      "sif": {
+        "N": 99,
+        "M": 6
+      },
+      "n": 100,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "VAREIGVL",
+      "sif": {
+        "N": 999,
+        "M": 6
+      },
+      "n": 1000,
+      "objective": "other",
+      "degree": 2
+    },
+    {
+      "name": "WOODS",
+      "sif": {
+        "NS": 25
+      },
+      "n": 100,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "WOODS",
+      "sif": {
+        "NS": 250
+      },
+      "n": 1000,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP1CLS",
+      "sif": {
+        "N": 10
+      },
+      "n": 120,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP1CLS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2600,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP1LS",
+      "sif": {
+        "N": 10
+      },
+      "n": 120,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP1LS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2600,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP2CLS",
+      "sif": {
+        "N": 10
+      },
+      "n": 120,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP2CLS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2600,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP2LS",
+      "sif": {
+        "N": 10
+      },
+      "n": 120,
+      "objective": "sum of squares",
+      "degree": 2
+    },
+    {
+      "name": "YATP2LS",
+      "sif": {
+        "N": 50
+      },
+      "n": 2600,
+      "objective": "sum of squares",
+      "degree": 2
+    }
+  ]
+}

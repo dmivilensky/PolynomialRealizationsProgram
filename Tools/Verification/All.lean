@@ -1,8 +1,9 @@
+import bezout.Check
 import chebyshev1.Check
 import chebyshev2.Check
+import jacobi.Check
+import krylov.Check
 import polyak.Check
--- import jacobi.Check
--- import krylov.Check
 
 /-!
 Shared complete-check entry point, maintained by `python3 -m Tools.Verification.Check all`.

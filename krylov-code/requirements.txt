@@ -1,0 +1,7 @@
+# Reference campaign runtime. Native CUTEst setup is documented separately.
+numpy==2.5.3
+scipy==1.18.1
+pycgdescent==0.12.1
+pycutest==1.8.2
+matplotlib==3.11.2
+pytest==9.1.1

@@ -1,0 +1,2593 @@
+import krylov.XR.Practical
+import krylov.XR.PracticalQuadratic
+import krylov.XR.PracticalQuadraticTranslation
+import krylov.XR.PracticalGrowthInitialRates
+import krylov.XR.EuclideanPracticalInitialRate
+import krylov.XR.GlobalComplexity
+import krylov.Certificates.CertifiedOptima
+import krylov.Certificates.BracketingExits
+import krylov.Cost.KnownBaseBallAxis
+import krylov.Strings.GeneralSpectralVariationalPrinciple
+import krylov.Asymptotics.ChebyshevComparison
+import krylov.Strings.GeneralSpectralSourceTail
+import krylov.Strings.SpectralFunctionCounterexample
+import krylov.Asymptotics.SharpLimit
+import krylov.Asymptotics.UpperExcess
+import krylov.Asymptotics.ExactAveragesBounds
+import krylov.Cost.AsymptoticScales
+import krylov.Cost.KnownBaseBall
+import krylov.Cost.NormalizedSeparation
+import krylov.Cost.GradientCounts
+import krylov.Strings.DiscreteMeasureIndependence
+import krylov.Strings.DiscreteInverseBoundary
+import krylov.Strings.DiscreteTopConverse
+import krylov.Strings.DiscreteGershgorin
+import krylov.Strings.GeneralSpectralTail
+import krylov.Strings.TypeChange
+import krylov.AnalyticTools.RightChange
+import krylov.AnalyticTools.RightFlow
+import krylov.AnalyticTools.ScalarFunctions
+import krylov.LotkaVolterra.BoundarySpectrum
+import krylov.Strings.ACStateDerivatives
+import krylov.Strings.OptimizerRegularMaximum
+import krylov.Strings.OptimizerStableCharacterization
+import krylov.Strings.OptimizerStableOrbits
+import krylov.Strings.SpectralEnergy
+import krylov.Strings.SpectralHalf
+import krylov.Strings.SpectralPrimitive
+import krylov.Strings.SpectralPrincipal
+import krylov.Strings.SpectralTentKernel
+import krylov.Strings.SpectralTents
+import krylov.Strings.TypeChangeAE
+import krylov.Strings.TypeClockInverse
+import krylov.Strings.TypeClockRegularity
+import krylov.Strings.TypeImage
+import krylov.Strings.TypeReduced
+import krylov.Strings.OptimizerAllLengths
+import krylov.Strings.OptimizerAnalyticFlow
+import krylov.Strings.OptimizerAsymptotics
+import krylov.Strings.OptimizerClosedLoop
+import krylov.Strings.OptimizerFiniteNoAttainment
+import krylov.Strings.OptimizerHalfMass
+import krylov.Strings.OptimizerInverseFeedback
+import krylov.Strings.OptimizerLocalInverseFeedback
+import krylov.Strings.OptimizerMonotone
+import krylov.Strings.OptimizerUniqueMaximum
+import krylov.Strings.OptimizerUniqueness
+import krylov.Strings.OptimizerWindowUniqueness
+import krylov.Strings.SpectralAtom
+import krylov.Strings.SpectralBoundary
+import krylov.Strings.SpectralCompression
+import krylov.Strings.SpectralScalar
+import krylov.Strings.SpectralSpace
+import krylov.LotkaVolterra.AnalyticGraphField
+import krylov.LotkaVolterra.CooperativeBarrier
+import krylov.LotkaVolterra.EndpointClassification
+import krylov.LotkaVolterra.EndpointClassificationField
+import krylov.LotkaVolterra.EndpointFiniteClock
+import krylov.LotkaVolterra.EndpointOrbitClassification
+import krylov.LotkaVolterra.EndpointOrbitSides
+import krylov.LotkaVolterra.ExitFinite
+import krylov.LotkaVolterra.ExitInitial
+import krylov.LotkaVolterra.ExitSide
+import krylov.LotkaVolterra.ExitStopped
+import krylov.LotkaVolterra.GlobalClippedFlow
+import krylov.LotkaVolterra.GlobalEndpointAnalytic
+import krylov.LotkaVolterra.GlobalGraphAnalyticAll
+import krylov.LotkaVolterra.GlobalGraphRegularity
+import krylov.LotkaVolterra.GlobalUpperIdentity
+import krylov.LotkaVolterra.RegionInvariance
+import krylov.LotkaVolterra.UpperRegionInvariance
+import krylov.ContinuumBV.ActualCadlag
+import krylov.ContinuumBV.ActualCoefficients
+import krylov.ContinuumBV.FiniteEquality
+import krylov.ContinuumBV.FiniteOptimality
+import krylov.ContinuumBV.FiniteRewardBound
+import krylov.ContinuumBV.FundamentalIdentity
+import krylov.ContinuumBV.LocalCosts
+import krylov.ContinuumBV.Optimality
+import krylov.ContinuumBV.RewardBound
+import krylov.ContinuumControl.CanonicalGraph
+import krylov.ContinuumControl.Maximum
+import krylov.Strings.AtomicState
+import krylov.Strings.GlobalDensityMass
+import krylov.Strings.LocalCompatibility
+import krylov.Strings.OptimizerConstructedMass
+import krylov.Strings.OptimizerDensityMass
+import krylov.Strings.OptimizerEndpointAttainment
+import krylov.Strings.OptimizerEndpointData
+import krylov.Strings.OptimizerFeedbackMass
+import krylov.Strings.OptimizerFiniteClock
+import krylov.Strings.OptimizerFiniteCoordinates
+import krylov.Strings.OptimizerFiniteState
+import krylov.Strings.OptimizerMassBounds
+import krylov.Strings.OptimizerMassShape
+import krylov.Strings.OptimizerOrbitAttainment
+import krylov.Strings.OptimizerPhysicalExtension
+import krylov.Strings.OptimizerPhysicalState
+import krylov.Strings.OptimizerQuadratures
+import krylov.Strings.OptimizerSubcriticalData
+import krylov.Strings.OptimizerTypeClock
+import krylov.Strings.Reward
+import krylov.LotkaVolterra.AnalyticFlow
+import krylov.LotkaVolterra.AnalyticSaddleDerivative
+import krylov.LotkaVolterra.AnalyticSaddleGraph
+import krylov.LotkaVolterra.AnalyticSaddleLift
+import krylov.LotkaVolterra.ExitComparison
+import krylov.LotkaVolterra.ExitCoordinates
+import krylov.LotkaVolterra.ExitExpansion
+import krylov.LotkaVolterra.ExitNonexit
+import krylov.LotkaVolterra.GlobalBoundedODE
+import krylov.LotkaVolterra.GlobalChordUniqueness
+import krylov.LotkaVolterra.GlobalCompactField
+import krylov.LotkaVolterra.GlobalEndpointField
+import krylov.LotkaVolterra.GlobalEndpointGraph
+import krylov.LotkaVolterra.GlobalEndpointOrbit
+import krylov.LotkaVolterra.GlobalEndpointShooting
+import krylov.LotkaVolterra.GlobalEndpointUniqueness
+import krylov.LotkaVolterra.GlobalExpandingLimit
+import krylov.LotkaVolterra.GlobalExpandingUniqueness
+import krylov.LotkaVolterra.GlobalFlowEstimate
+import krylov.LotkaVolterra.GlobalFullSaddleGraphs
+import krylov.LotkaVolterra.GlobalGraphAnalytic
+import krylov.LotkaVolterra.GlobalGraphChord
+import krylov.LotkaVolterra.GlobalGraphCoordinates
+import krylov.LotkaVolterra.GlobalLogisticField
+import krylov.LotkaVolterra.GlobalLogisticShooting
+import krylov.LotkaVolterra.GlobalLowerIdentity
+import krylov.LotkaVolterra.GlobalSaddleBranches
+import krylov.LotkaVolterra.GlobalSaddleChord
+import krylov.LotkaVolterra.GlobalSaddleContraction
+import krylov.LotkaVolterra.GlobalSaddleField
+import krylov.LotkaVolterra.GlobalSaddleLimit
+import krylov.LotkaVolterra.GlobalSaddleShooting
+import krylov.LotkaVolterra.GlobalSaddleWeighted
+import krylov.LotkaVolterra.GlobalStripShooting
+import krylov.LotkaVolterra.GlobalSubcriticalGraph
+import krylov.LotkaVolterra.GlobalWholeStrip
+import krylov.ContinuumControl.ActualAtom
+import krylov.ContinuumControl.EndpointOrbitValue
+import krylov.ContinuumControl.OrbitValue
+import krylov.ContinuumBV.ActualAtoms
+import krylov.ContinuumBV.ActualContinuous
+import krylov.ContinuumBV.ActualPhysical
+import krylov.ContinuumBV.AtomicMeasure
+import krylov.ContinuumBV.BochnerSums
+import krylov.ContinuumBV.CadlagPartitions
+import krylov.ContinuumBV.CadlagPhysical
+import krylov.ContinuumBV.ChainPartitions
+import krylov.ContinuumBV.ChordCoefficient
+import krylov.ContinuumBV.ChordDomain
+import krylov.ContinuumBV.Composition
+import krylov.ContinuumBV.ContinuousChain
+import krylov.ContinuumBV.DensityPartitions
+import krylov.ContinuumBV.DensitySubstitution
+import krylov.ContinuumBV.EqualGrid
+import krylov.ContinuumBV.MeasureSums
+import krylov.ContinuumBV.PotentialAtoms
+import krylov.ContinuumBV.PotentialDirections
+import krylov.ContinuumBV.SingularIdentity
+import krylov.ContinuumBV.StateIncrements
+import krylov.ContinuumBV.StringPath
+import krylov.ContinuumBV.TaylorSums
+import krylov.ContinuumBV.UniformNeighborhood
+import krylov.ContinuumBV.UniformTaylor
+import krylov.AnalyticTools.ContinuousInverse
+import krylov.AnalyticTools.Implicit
+import krylov.AnalyticTools.LocalInverse
+import krylov.AnalyticTools.OperatorImplicit
+import krylov.AnalyticTools.PathIntegral
+import krylov.AnalyticTools.PicardImplicit
+import krylov.AnalyticTools.RescaledFlow
+import krylov.AnalyticTools.WeightedDilation
+import krylov.Strings.GlobalState
+import krylov.Strings.TypeClock
+import krylov.Strings.TypeDensity
+import krylov.Strings.FeedbackAlgebra
+import krylov.Strings.FeedbackFlow
+import krylov.Strings.FeedbackInitialDensity
+import krylov.Strings.FeedbackInvariant
+import krylov.Strings.FeedbackMass
+import krylov.Strings.FeedbackMassInvariant
+import krylov.Strings.FeedbackMeasureInvariant
+import krylov.Strings.FeedbackSmoothBridge
+import krylov.Strings.LocalMass
+import krylov.Strings.Mass
+import krylov.Strings.State
+import krylov.Strings.StateRegularity
+import krylov.Strings.Volterra
+import krylov.Strings.VolterraState
+import krylov.Strings.WeightedVolterra
+import krylov.Strings.WindowMass
+import krylov.LotkaVolterra.BackwardLimit
+import krylov.LotkaVolterra.Barrier
+import krylov.LotkaVolterra.Basic
+import krylov.LotkaVolterra.EscapeInvariant
+import krylov.LotkaVolterra.LocalFlow
+import krylov.LotkaVolterra.OrbitEstimates
+import krylov.LotkaVolterra.PositiveOrbits
+import krylov.LotkaVolterra.Regions
+import krylov.LotkaVolterra.Saddle
+import krylov.ContinuumControl.DifferentialState
+import krylov.ContinuumControl.EndpointDecay
+import krylov.ContinuumControl.Feedback
+import krylov.ContinuumControl.Impulse
+import krylov.ContinuumControl.Potential
+import krylov.ContinuumControl.SmoothIdentity
+import krylov.Convergence.EuclideanFullValueExecution
+import krylov.Convergence.EuclideanWindowExecution
+import krylov.Convergence.EuclideanWindowRate
+import krylov.Convergence.SS1FEuclideanPhysicalRate
+import krylov.Convergence.WindowArbitrarySplitCoordinates
+import krylov.XR.EuclideanDictionary
+import krylov.XR.EuclideanFullEntry
+import krylov.XR.EuclideanFullMemory
+import krylov.XR.EuclideanFullSource
+import krylov.XR.EuclideanGate
+import krylov.XR.EuclideanGlobal
+import krylov.XR.EuclideanGrowth
+import krylov.XR.EuclideanGrowthSource
+import krylov.XR.EuclideanInitialRate
+import krylov.XR.EuclideanLocalMemory
+import krylov.XR.EuclideanLocalQuotient
+import krylov.XR.EuclideanLocalSelected
+import krylov.XR.EuclideanMemory
+import krylov.XR.EuclideanModel
+import krylov.XR.EuclideanModelBasic
+import krylov.XR.EuclideanNonempty
+import krylov.XR.EuclideanPairBounds
+import krylov.XR.EuclideanProbeMemory
+import krylov.XR.EuclideanQuadratic
+import krylov.XR.EuclideanRetention
+import krylov.XR.EuclideanSourceData
+import krylov.XR.EuclideanSourceGate
+import krylov.XR.EuclideanSourceTerms
+import krylov.XR.EuclideanTrialData
+import krylov.XR.EuclideanWindowBounds
+import krylov.XR.LocalNativeFullRemainder
+import krylov.XR.LocalNativeFunctionOutput
+import krylov.XR.LocalNativeOperatorTrial
+import krylov.XR.LocalNativeOperatorVariation
+import krylov.XR.LocalNativePrefixResponse
+import krylov.XR.LocalNativeRemainder
+import krylov.XR.LocalNativeResponse
+import krylov.XR.LocalNativeSource
+import krylov.XR.LocalNativeSourceRemainder
+import krylov.XR.LocalOperatorDictionary
+import krylov.XR.LocalOperatorOutputDictionary
+import krylov.XR.LocalOperatorProgram
+import krylov.XR.OrdinaryValueIndependence
+import krylov.Convergence.CharacteristicComparison
+import krylov.Convergence.CharacteristicRoots
+import krylov.Convergence.EvaluatedC3Transfer
+import krylov.Convergence.EvaluatedCubicRemainder
+import krylov.Convergence.EvaluatedDerivativeCoordinates
+import krylov.Convergence.EvaluatedDomains
+import krylov.Convergence.EvaluatedFields
+import krylov.Convergence.EvaluatedHomogeneous
+import krylov.Convergence.EvaluatedInputs
+import krylov.Convergence.EvaluatedLaunchDictionary
+import krylov.Convergence.EvaluatedLeadingGradient
+import krylov.Convergence.EvaluatedLocalization
+import krylov.Convergence.EvaluatedOrthogonalResponse
+import krylov.Convergence.EvaluatedOutputCoordinates
+import krylov.Convergence.EvaluatedOutputFields
+import krylov.Convergence.EvaluatedRankOneCoefficient
+import krylov.Convergence.EvaluatedRankOneGeometry
+import krylov.Convergence.EvaluatedReferenceComparison
+import krylov.Convergence.EvaluatedReferenceMidpoints
+import krylov.Convergence.EvaluatedRegularity
+import krylov.Convergence.EvaluatedSourceJet
+import krylov.Convergence.EvaluatedSourceQuadratic
+import krylov.Convergence.EvaluatedTensorCoordinates
+import krylov.Convergence.EvaluatedTensorCubic
+import krylov.Convergence.EvaluatedTensorLeading
+import krylov.Convergence.EvaluatedVaryingGradient
+import krylov.Convergence.ObservableAppend
+import krylov.Convergence.ObservableCurvature
+import krylov.Convergence.ObservableCycleInvariant
+import krylov.Convergence.ObservableDomainSource
+import krylov.Convergence.ObservableDomainUniform
+import krylov.Convergence.ObservableEnergy
+import krylov.Convergence.ObservableFCAverages
+import krylov.Convergence.ObservableFCBounds
+import krylov.Convergence.ObservableFCData
+import krylov.Convergence.ObservableFCPrefix
+import krylov.Convergence.ObservableFCSelfConcordant
+import krylov.Convergence.ObservableFCSource
+import krylov.Convergence.ObservableFCTerminal
+import krylov.Convergence.ObservableFCTrace
+import krylov.Convergence.ObservableFrame
+import krylov.Convergence.ObservableGradientError
+import krylov.Convergence.ObservableLine
+import krylov.Convergence.ObservableModelEnergy
+import krylov.Convergence.ObservableNormalization
+import krylov.Convergence.ObservableProbeAngles
+import krylov.Convergence.ObservableRFCAccepted
+import krylov.Convergence.ObservableRFCAlgebra
+import krylov.Convergence.ObservableRFCCycle
+import krylov.Convergence.ObservableRFCFailed
+import krylov.Convergence.ObservableRFCGate
+import krylov.Convergence.ObservableRFCModel
+import krylov.Convergence.ObservableRFCMovement
+import krylov.Convergence.ObservableRFCSelfConcordant
+import krylov.Convergence.ObservableRFCSharp
+import krylov.Convergence.ObservableRFCState
+import krylov.Convergence.ObservableRFCWindow
+import krylov.Convergence.ObservableRestart
+import krylov.Convergence.ObservableSegments
+import krylov.Convergence.ObservableSelfConcordant
+import krylov.Convergence.ObservableSemantics
+import krylov.Convergence.ObservableSpectralData
+import krylov.Convergence.ObservableSpectralUniform
+import krylov.Convergence.ObservableStep
+import krylov.Convergence.OldestDirectionalModel
+import krylov.Convergence.OldestDirectionalSource
+import krylov.Convergence.OldestMovingSource
+import krylov.Convergence.OldestMultiplicative
+import krylov.Convergence.OldestProbeDistance
+import krylov.Convergence.OldestWindowSource
+import krylov.Convergence.OneGradientC1Localization
+import krylov.Convergence.OneGradientC3Source
+import krylov.Convergence.OneGradientClippedMagnitude
+import krylov.Convergence.OneGradientCompact
+import krylov.Convergence.OneGradientCubicAttainment
+import krylov.Convergence.OneGradientCubicLower
+import krylov.Convergence.OneGradientCubicMetric
+import krylov.Convergence.OneGradientCubicPrefix
+import krylov.Convergence.OneGradientCubicSource
+import krylov.Convergence.OneGradientCubicTensor
+import krylov.Convergence.OneGradientCubicTransfer
+import krylov.Convergence.OneGradientCubicTwins
+import krylov.Convergence.OneGradientEndpointSelection
+import krylov.Convergence.OneGradientFibreQuery
+import krylov.Convergence.OneGradientFieldChanges
+import krylov.Convergence.OneGradientFixedFibreDelta
+import krylov.Convergence.OneGradientFixedFibreLower
+import krylov.Convergence.OneGradientFixedInformation
+import krylov.Convergence.OneGradientFunctions
+import krylov.Convergence.OneGradientHarmonicCubic
+import krylov.Convergence.OneGradientJacobiSource
+import krylov.Convergence.OneGradientLanczosLower
+import krylov.Convergence.OneGradientLastCoordinate
+import krylov.Convergence.OneGradientLastEnergyNormalization
+import krylov.Convergence.OneGradientLocalization
+import krylov.Convergence.OneGradientLowerScalar
+import krylov.Convergence.OneGradientMetricNormalization
+import krylov.Convergence.OneGradientNormalGeometry
+import krylov.Convergence.OneGradientNormalLower
+import krylov.Convergence.OneGradientOutputTaylor
+import krylov.Convergence.OneGradientRankOne
+import krylov.Convergence.OneGradientReferenceComparison
+import krylov.Convergence.OneGradientRepresentatives
+import krylov.Convergence.OneGradientSmallSource
+import krylov.Convergence.OneGradientSourceBounds
+import krylov.Convergence.OneGradientSourceDomain
+import krylov.Convergence.OneGradientSourceJet
+import krylov.Convergence.OneGradientSourceQuadratic
+import krylov.Convergence.OneGradientSourceWitness
+import krylov.Convergence.OneGradientSpectralFibreLower
+import krylov.Convergence.OneGradientSpectralLower
+import krylov.Convergence.OneGradientSymmetry
+import krylov.Convergence.OneGradientTrialMiss
+import krylov.Convergence.OneGradientTrueMetric
+import krylov.Convergence.Order
+import krylov.Convergence.OrderCanonicalC3Source
+import krylov.Convergence.OrderCounting
+import krylov.Convergence.OrderDeferredAffine
+import krylov.Convergence.OrderDeferredConstant
+import krylov.Convergence.OrderDeferredCoordinates
+import krylov.Convergence.OrderDeferredFirstSearch
+import krylov.Convergence.OrderDeferredNativeSharp
+import krylov.Convergence.OrderDeferredNormalized
+import krylov.Convergence.OrderDeferredQuadratic
+import krylov.Convergence.OrderDeferredQuadraticNormalized
+import krylov.Convergence.OrderDeferredRate
+import krylov.Convergence.OrderDeferredResponse
+import krylov.Convergence.OrderDeferredRestarted
+import krylov.Convergence.OrderDeferredRestartedC3
+import krylov.Convergence.OrderDeferredTensor
+import krylov.Convergence.OrderGradientErrorTransfer
+import krylov.Convergence.OrderHistoryScale
+import krylov.Convergence.OrderNativeSharpC3
+import krylov.Convergence.OrderNativeSharpError
+import krylov.Convergence.OrderNativeSharpGradient
+import krylov.Convergence.OrderNativeSharpNormalized
+import krylov.Convergence.OrderNativeSharpRestarted
+import krylov.Convergence.OrderNativeSharpRestartedC3
+import krylov.Convergence.OrderObservedReferenceAdmission
+import krylov.Convergence.OrderSchurHistory
+import krylov.Convergence.OrderSchurScale
+import krylov.Convergence.OrderSearchOnlyBootstrap
+import krylov.Convergence.OrderSearchOnlyDomains
+import krylov.Convergence.OrderSearchOnlyEmbedding
+import krylov.Convergence.OrderSearchOnlyFields
+import krylov.Convergence.OrderSearchOnlyInputs
+import krylov.Convergence.OrderSearchOnlyJets
+import krylov.Convergence.OrderSearchOnlyLeading
+import krylov.Convergence.OrderSearchOnlyReference
+import krylov.Convergence.OrderSearchOnlySource
+import krylov.Convergence.OrderSearchOnlyTaylor
+import krylov.Convergence.OrderSharpRestarted
+import krylov.Convergence.OrderTensorConstants
+import krylov.Convergence.OrderUnitReferenceAdmission
+import krylov.Convergence.RFCPathGradientClock
+import krylov.Convergence.RFCPathOldest
+import krylov.Convergence.RFCPathRate
+import krylov.Convergence.RFCPathRefinedAngle
+import krylov.Convergence.RFCPathSharpOldest
+import krylov.Convergence.RFCPathSourceAngle
+import krylov.Convergence.RFCPathStoredDistance
+import krylov.Convergence.RFCPathSuperlinear
+import krylov.Convergence.RFCPathWindows
+import krylov.Convergence.RFCPathZeroLipschitz
+import krylov.Convergence.RecurrenceCorrected
+import krylov.Convergence.RecurrenceOrder
+import krylov.Convergence.RestartChebyshevProfile
+import krylov.Convergence.RestartConstants
+import krylov.Convergence.RestartFrozenC3
+import krylov.Convergence.RestartFrozenDegree
+import krylov.Convergence.RestartFrozenExecution
+import krylov.Convergence.RestartFrozenInputs
+import krylov.Convergence.RestartFrozenModel
+import krylov.Convergence.RestartFrozenNormalized
+import krylov.Convergence.RestartFrozenOrder
+import krylov.Convergence.RestartFrozenQueries
+import krylov.Convergence.RestartRFCChebyshevProfile
+import krylov.Convergence.RestartVirtualDirectionOrder
+import krylov.Convergence.RestartVirtualOrder
+import krylov.Convergence.RestartedFC
+import krylov.Convergence.RestartedFCOrder
+import krylov.Convergence.RestartedRFCCubic
+import krylov.Convergence.RestartedRFCOrder
+import krylov.Convergence.SS1CenteredRate
+import krylov.Convergence.SS1DeterminantLocal
+import krylov.Convergence.SS1EuclideanLocal
+import krylov.Convergence.SS1Execution
+import krylov.Convergence.SS1FContinuousExecution
+import krylov.Convergence.SS1FContinuousLimit
+import krylov.Convergence.SS1FContinuousOldest
+import krylov.Convergence.SS1FContinuousSource
+import krylov.Convergence.SS1FDiagonal
+import krylov.Convergence.SS1FImprovedWindow
+import krylov.Convergence.SS1FLeadingMatrix
+import krylov.Convergence.SS1FModel
+import krylov.Convergence.SS1FOriginalRegularity
+import krylov.Convergence.SS1FPhysicalRate
+import krylov.Convergence.SS1FQueryBound
+import krylov.Convergence.SS1FRate
+import krylov.Convergence.SS1FScalar
+import krylov.Convergence.SS1FScalarModel
+import krylov.Convergence.SS1FScalarSharp
+import krylov.Convergence.SS1FSharpAsymptotic
+import krylov.Convergence.SS1FSharpComplete
+import krylov.Convergence.SS1FSharpError
+import krylov.Convergence.SS1FSharpSource
+import krylov.Convergence.SS1FSharpWindow
+import krylov.Convergence.SS1FSource
+import krylov.Convergence.SS1FSourceLimit
+import krylov.Convergence.SS1FSuperlinear
+import krylov.Convergence.SS1FWindowBounds
+import krylov.Convergence.SS1LocalBounds
+import krylov.Convergence.SS1LocalConvergence
+import krylov.Convergence.SS1MetricLocal
+import krylov.Convergence.SS1ModelLimit
+import krylov.Convergence.SS1ObservedSplit
+import krylov.Convergence.SS1OldestAsymptotic
+import krylov.Convergence.SS1PhysicalOldest
+import krylov.Convergence.SS1PhysicalRate
+import krylov.Convergence.SS1PrintedOldest
+import krylov.Convergence.SS1Rate
+import krylov.Convergence.SS1SharpConstant
+import krylov.Convergence.SS1ZeroLipschitz
+import krylov.Convergence.SecantCubicSource
+import krylov.Convergence.SecantMovingModel
+import krylov.Convergence.SecantSourceBounds
+import krylov.Convergence.SecantThirdVariation
+import krylov.Convergence.SecantWindowGates
+import krylov.Convergence.SecantWindowSource
+import krylov.Convergence.SlidingFCConditioning
+import krylov.Convergence.SlidingFCExecution
+import krylov.Convergence.SlidingFCHalf
+import krylov.Convergence.SlidingFCPath
+import krylov.Convergence.SlidingFCPathRate
+import krylov.Convergence.SlidingFCRate
+import krylov.Convergence.SlidingFCResidual
+import krylov.Convergence.SlidingFCSharpSource
+import krylov.Convergence.SlidingFCSharpTerms
+import krylov.Convergence.SlidingFCSourceResidual
+import krylov.Convergence.SlidingFCWeightedResidual
+import krylov.Convergence.SlidingGramInference
+import krylov.Convergence.SlidingMetricExecution
+import krylov.Convergence.SlidingMetricProbe
+import krylov.Convergence.SlidingMetricRegularity
+import krylov.Convergence.SlidingMetricSource
+import krylov.Convergence.SlidingNearMonotone
+import krylov.Convergence.SlidingPlanarIndependence
+import krylov.Convergence.SlidingRFCAges
+import krylov.Convergence.SlidingRFCAnchor
+import krylov.Convergence.SlidingRFCAngle
+import krylov.Convergence.SlidingRFCExecution
+import krylov.Convergence.SlidingRFCGradientClock
+import krylov.Convergence.SlidingRFCMetric
+import krylov.Convergence.SlidingRFCMetricGate
+import krylov.Convergence.SlidingRFCMetricRate
+import krylov.Convergence.SlidingRFCOldest
+import krylov.Convergence.SlidingRFCRate
+import krylov.Convergence.SlidingRFCRefinedAngle
+import krylov.Convergence.SlidingRFCSharpOldest
+import krylov.Convergence.SlidingRFCSource
+import krylov.Convergence.SlidingRFCSourceAngle
+import krylov.Convergence.SlidingRFCStoredDistance
+import krylov.Convergence.SlidingRFCSuperlinear
+import krylov.Convergence.SlidingRFCWindows
+import krylov.Convergence.SlidingRFCZeroLipschitz
+import krylov.Convergence.SlidingSourceGram
+import krylov.Convergence.SplitAdmissibility
+import krylov.Convergence.SplitSourceAsymptotic
+import krylov.Convergence.TableFrozenFC
+import krylov.Convergence.TableRestartedDC
+import krylov.Convergence.TableRestartedFC
+import krylov.Convergence.TableRestartedRFC
+import krylov.Convergence.TableRestartedRFCGradients
+import krylov.Convergence.TableRestartedXRFC
+import krylov.Convergence.TableRestartedXRFCD
+import krylov.Convergence.VirtualC3Transfer
+import krylov.Convergence.VirtualCubicRemainder
+import krylov.Convergence.VirtualDerivativeCoordinates
+import krylov.Convergence.VirtualDirectionC3Transfer
+import krylov.Convergence.VirtualDirectionCubicRemainder
+import krylov.Convergence.VirtualDirectionDerivativeCoordinates
+import krylov.Convergence.VirtualDirectionFields
+import krylov.Convergence.VirtualDirectionHomogeneous
+import krylov.Convergence.VirtualDirectionInputs
+import krylov.Convergence.VirtualDirectionLeadingGradient
+import krylov.Convergence.VirtualDirectionLocalization
+import krylov.Convergence.VirtualDirectionMidpoints
+import krylov.Convergence.VirtualDirectionOutputCoordinates
+import krylov.Convergence.VirtualDirectionOutputFields
+import krylov.Convergence.VirtualDirectionRankOne
+import krylov.Convergence.VirtualDirectionReferenceComparison
+import krylov.Convergence.VirtualDirectionSourceJet
+import krylov.Convergence.VirtualDirectionSourceQuadratic
+import krylov.Convergence.VirtualDirectionStationary
+import krylov.Convergence.VirtualDirectionTensorBound
+import krylov.Convergence.VirtualDirectionTensorCoordinates
+import krylov.Convergence.VirtualDirectionTensorCubic
+import krylov.Convergence.VirtualDirectionTensorLeading
+import krylov.Convergence.VirtualFields
+import krylov.Convergence.VirtualInputs
+import krylov.Convergence.VirtualLastRankOne
+import krylov.Convergence.VirtualLeadingGradient
+import krylov.Convergence.VirtualLocalization
+import krylov.Convergence.VirtualNearCoefficient
+import krylov.Convergence.VirtualNearExact
+import krylov.Convergence.VirtualNearExactDirection
+import krylov.Convergence.VirtualOutputCoordinates
+import krylov.Convergence.VirtualOutputFields
+import krylov.Convergence.VirtualRankOneCoefficient
+import krylov.Convergence.VirtualRankOneGeometry
+import krylov.Convergence.VirtualReferenceComparison
+import krylov.Convergence.VirtualReferenceMidpoints
+import krylov.Convergence.VirtualReferenceTrialDictionary
+import krylov.Convergence.VirtualSourceJet
+import krylov.Convergence.VirtualSourceQuadratic
+import krylov.Convergence.VirtualStationary
+import krylov.Convergence.VirtualTensorBanach
+import krylov.Convergence.VirtualTensorBound
+import krylov.Convergence.VirtualTensorCoordinates
+import krylov.Convergence.VirtualTensorCubic
+import krylov.Convergence.VirtualTensorLeading
+import krylov.Convergence.VirtualTrialGeometry
+import krylov.Convergence.VirtualVaryingGradient
+import krylov.Convergence.WindowAugmentation
+import krylov.Convergence.WindowCenteredCoordinates
+import krylov.Convergence.WindowChronology
+import krylov.Convergence.WindowDeterminant
+import krylov.Convergence.WindowFullExecution
+import krylov.Convergence.WindowFullValueExecution
+import krylov.Convergence.WindowMetricExecution
+import krylov.Convergence.WindowMetricGain
+import krylov.Convergence.WindowMetricRegularity
+import krylov.Convergence.WindowModelBounds
+import krylov.Convergence.WindowModelLimits
+import krylov.Convergence.WindowNativeRate
+import krylov.Convergence.WindowNativeSharp
+import krylov.Convergence.WindowNativeValueRate
+import krylov.Convergence.WindowNormalization
+import krylov.Convergence.WindowObservations
+import krylov.Convergence.WindowOriginalSharp
+import krylov.Convergence.WindowPairChronology
+import krylov.Convergence.WindowProbeConditioning
+import krylov.Convergence.WindowQueryAsymptotic
+import krylov.Convergence.WindowRateShift
+import krylov.Convergence.WindowSelectedExecution
+import krylov.Convergence.WindowSelectedOrdinary
+import krylov.Convergence.WindowSharpQuery
+import krylov.Convergence.WindowSourceGain
+import krylov.Convergence.WindowSuperlinear
+import krylov.Convergence.WindowTranslation
+import krylov.Convergence.WindowWeightedAges
+import krylov.Correction.SharpRestart
+import krylov.Correction.SharpRestartEnergy
+import krylov.Correction.SharpRestartPhysical
+import krylov.Correction.SharpRestartProjection
+import krylov.Correction.SharpRestartScalar
+import krylov.Functions.ObservableRFCMetric
+import krylov.Functions.RankOneCriticalMinimum
+import krylov.Functions.RankOneCriticalPoint
+import krylov.Functions.RankOneCriticalScalar
+import krylov.Functions.RankOneCriticalUniform
+import krylov.Functions.TrapezoidContinuous
+import krylov.Functions.TrapezoidModulusKernel
+import krylov.LinearAlgebra.ProjectionAugmentation
+import krylov.LinearAlgebra.ProjectionGain
+import krylov.XR.AdequacyFloor
+import krylov.XR.AlgorithmModel
+import krylov.XR.AlgorithmState
+import krylov.XR.AnchorInvariance
+import krylov.XR.Backtracking
+import krylov.XR.BacktrackingDescent
+import krylov.XR.CanonicalBounds
+import krylov.XR.CanonicalTwo
+import krylov.XR.CapacityGrowth
+import krylov.XR.Cholesky
+import krylov.XR.CholeskyCount
+import krylov.XR.CholeskySchur
+import krylov.XR.CholeskySuffix
+import krylov.XR.ConditionalColumns
+import krylov.XR.ConditionalCompletion
+import krylov.XR.ConditionalData
+import krylov.XR.ConditionalFeasibility
+import krylov.XR.ConditionalFresh
+import krylov.XR.ConditionalMonotonicity
+import krylov.XR.ConditionalObservation
+import krylov.XR.ConditionalPhysical
+import krylov.XR.ConditionalRadiusAlgebra
+import krylov.XR.ConditionalRealization
+import krylov.XR.ConditionalUpper
+import krylov.XR.ConjugateVariation
+import krylov.XR.ContractiveFlag
+import krylov.XR.CorrectedDefect
+import krylov.XR.CorrectedDictionary
+import krylov.XR.CorrectedFullSource
+import krylov.XR.CorrectedGate
+import krylov.XR.CorrectedGrowth
+import krylov.XR.CorrectedGrowthSource
+import krylov.XR.CorrectedPairBounds
+import krylov.XR.CorrectedSourceData
+import krylov.XR.CorrectedSourceGate
+import krylov.XR.CorrectedSourceTerms
+import krylov.XR.CorrectedWindowBounds
+import krylov.XR.CorrectionUncertainty
+import krylov.XR.Execution
+import krylov.XR.ExecutionDescent
+import krylov.XR.ExecutionQueryBounds
+import krylov.XR.ExecutionSafeguardedTranslation
+import krylov.XR.ExecutionTranslation
+import krylov.XR.FlagProjector
+import krylov.XR.FlagRigidity
+import krylov.XR.FlagVariation
+import krylov.XR.Global
+import krylov.XR.GlobalAlgorithm
+import krylov.XR.GrowthFloorClosure
+import krylov.XR.GrowthFloorSource
+import krylov.XR.GrowthFullMemory
+import krylov.XR.GrowthFullSource
+import krylov.XR.GrowthInitialRates
+import krylov.XR.GrowthOriginalFloor
+import krylov.XR.GrowthOriginalRates
+import krylov.XR.GrowthOriginalTransition
+import krylov.XR.GrowthPhase
+import krylov.XR.GrowthRitz
+import krylov.XR.GrowthRitzMonotone
+import krylov.XR.GrowthRitzSource
+import krylov.XR.GrowthSource
+import krylov.XR.GrowthUpperMargin
+import krylov.XR.HermitianForms
+import krylov.XR.HermitianNorm
+import krylov.XR.KnownConditionalFibre
+import krylov.XR.LocalAcceptance
+import krylov.XR.LocalAlgorithmStationary
+import krylov.XR.LocalBacktracking
+import krylov.XR.LocalCoercivity
+import krylov.XR.LocalCurvatureIntegral
+import krylov.XR.LocalCurvatureQuotient
+import krylov.XR.LocalDimensionConstants
+import krylov.XR.LocalDirection
+import krylov.XR.LocalEnergyAlgebra
+import krylov.XR.LocalEquivalence
+import krylov.XR.LocalFirstAcceptance
+import krylov.XR.LocalFixedFloor
+import krylov.XR.LocalFloorSource
+import krylov.XR.LocalFrameBounds
+import krylov.XR.LocalFullWindow
+import krylov.XR.LocalGeneralEnergy
+import krylov.XR.LocalGeneralModel
+import krylov.XR.LocalGeneralQuotient
+import krylov.XR.LocalHistoryChart
+import krylov.XR.LocalHistoryDictionary
+import krylov.XR.LocalHistoryPairs
+import krylov.XR.LocalHistoryProgram
+import krylov.XR.LocalHistoryTests
+import krylov.XR.LocalLimitStationary
+import krylov.XR.LocalMeasuredQuotient
+import krylov.XR.LocalMemory
+import krylov.XR.LocalModelActivation
+import krylov.XR.LocalModelStep
+import krylov.XR.LocalNativeChart
+import krylov.XR.LocalNativeReplay
+import krylov.XR.LocalNewPairs
+import krylov.XR.LocalNonempty
+import krylov.XR.LocalNormalization
+import krylov.XR.LocalOracleBounds
+import krylov.XR.LocalOracleQueries
+import krylov.XR.LocalOracleSource
+import krylov.XR.LocalParametricVirtual
+import krylov.XR.LocalPositive
+import krylov.XR.LocalPrescribedTrial
+import krylov.XR.LocalPrimitiveQuotient
+import krylov.XR.LocalProbeMemory
+import krylov.XR.LocalQuadraticDomains
+import krylov.XR.LocalQuadraticProgram
+import krylov.XR.LocalRadauSource
+import krylov.XR.LocalRawWindow
+import krylov.XR.LocalReferenceBranch
+import krylov.XR.LocalReferenceChart
+import krylov.XR.LocalRegularTrialTransfer
+import krylov.XR.LocalRelative
+import krylov.XR.LocalRetention
+import krylov.XR.LocalRitzBounds
+import krylov.XR.LocalSafeguard
+import krylov.XR.LocalSchurNormalization
+import krylov.XR.LocalSecants
+import krylov.XR.LocalSelectedModel
+import krylov.XR.LocalSelectedQuotient
+import krylov.XR.LocalSpectralBand
+import krylov.XR.LocalStepBounds
+import krylov.XR.LocalStrictBranch
+import krylov.XR.LocalTerminalEquivalence
+import krylov.XR.LocalTerminalTests
+import krylov.XR.LocalTrialComparison
+import krylov.XR.LocalTrialData
+import krylov.XR.LocalTrialEnergy
+import krylov.XR.LocalTrialVector
+import krylov.XR.LocalUniformStep
+import krylov.XR.LocalUnitAcceptance
+import krylov.XR.LocalVirtualEquivalence
+import krylov.XR.LocalWindowBounds
+import krylov.XR.LocalWindowQuotient
+import krylov.XR.MemoryCapacity
+import krylov.XR.MemoryFiniteForgetting
+import krylov.XR.MemoryForgettingStep
+import krylov.XR.MemoryGeometry
+import krylov.XR.MemoryGoodSuffix
+import krylov.XR.MemoryObservations
+import krylov.XR.MemoryPositive
+import krylov.XR.MemoryRank
+import krylov.XR.MemoryStateInvariants
+import krylov.XR.MemorySuffix
+import krylov.XR.MetricRigidity
+import krylov.XR.MetricTransfer
+import krylov.XR.ModelQuadratic
+import krylov.XR.ModelStep
+import krylov.XR.ModelTranslation
+import krylov.XR.ModelWindow
+import krylov.XR.PhysicalVariation
+import krylov.XR.QuadraticAlgorithm
+import krylov.XR.QuadraticBeforeDeletion
+import krylov.XR.QuadraticEventInvariant
+import krylov.XR.QuadraticEventRun
+import krylov.XR.QuadraticEvents
+import krylov.XR.QuadraticExecution
+import krylov.XR.QuadraticMemoryPrefix
+import krylov.XR.QuadraticModel
+import krylov.XR.QuadraticObservedFlag
+import krylov.XR.QuadraticOuterEvents
+import krylov.XR.QuadraticOuterInvariant
+import krylov.XR.QuadraticReference
+import krylov.XR.QuadraticRetention
+import krylov.XR.QuadraticRun
+import krylov.XR.QuadraticTerminal
+import krylov.XR.QuadraticTranslation
+import krylov.XR.QuadraticTrial
+import krylov.XR.QuadraticUpperClip
+import krylov.XR.RadauAugmentation
+import krylov.XR.RadauCompression
+import krylov.XR.RadauDomain
+import krylov.XR.RadauEstimates
+import krylov.XR.RadauFrame
+import krylov.XR.RadauPrimitive
+import krylov.XR.RadauRadius
+import krylov.XR.RadauRawSource
+import krylov.XR.RadauScaling
+import krylov.XR.RadauSource
+import krylov.XR.RadauUpperSource
+import krylov.XR.RealComplexPositive
+import krylov.XR.RelativeCorrection
+import krylov.XR.RobustCalculus
+import krylov.XR.RobustExistence
+import krylov.XR.RobustNewton
+import krylov.XR.RobustNewtonNecessary
+import krylov.XR.RobustPath
+import krylov.XR.RobustRegularizer
+import krylov.XR.RobustStationary
+import krylov.XR.RobustSupport
+import krylov.XR.RobustZero
+import krylov.XR.Safeguard
+import krylov.XR.SkewCongruence
+import krylov.XR.SkewTestNorm
+import krylov.XR.ThresholdMoments
+import krylov.XR.ThresholdRigidity
+import krylov.XR.UnknownConditionalBound
+import krylov.XR.VariationThreshold
+import krylov.XR.WindowTest
+import krylov.XR.XRFCChronological
+import krylov.XR.XRFCFunction
+import krylov.XR.XRFCReplay
+import krylov.XR.XRFCScalarDictionary
+import krylov.Functions.NativeEndpointCentre
+import krylov.Functions.ReferenceEndpointReader
+import krylov.Functions.EndpointCentreExecution
+import krylov.Functions.EndpointCentreCongruence
+import krylov.Functions.EndpointValueReaderSpan
+import krylov.Functions.NativeRFCFNormalizedDecay
+import krylov.Functions.CubicRestartDecay
+import krylov.Functions.PlanarRFCFOriginalWorst
+import krylov.Functions.RFCFNormalizedAsymptoticNorm
+import krylov.Functions.GlobalValueContinuation
+import krylov.Functions.ReferencePlanarMethodMinimax
+import krylov.Functions.PlanarRFCFRelative
+import krylov.Functions.PlanarRFCFOriginalBaseAverage
+import krylov.Functions.NativeRFCFNormalizedRestarted
+import krylov.Functions.RFCFAsymptoticNorm
+import krylov.Functions.ReferencePlaneCompactAdmission
+import krylov.Functions.ReferencePlaneRFCFWorst
+import krylov.Functions.NativeCentreUpper
+import krylov.Functions.ReferenceRFCFNormalization
+import krylov.Functions.ReferenceRFCFRegularity
+import krylov.Functions.HilbertPlaneRFCFModel
+import krylov.Functions.HilbertPlaneRFCFSplits
+import krylov.Functions.PlanarRFCFWindow
+import krylov.Tensor.BinaryRFCRegularity
+import krylov.Functions.ReferencePlaneNormalizedLower
+import krylov.Functions.ReferencePlanePrintedNormalization
+import krylov.Functions.ReferencePlaneFullReference
+import krylov.Functions.MetricValueModelOutput
+import krylov.Functions.PlanarObservedCentre
+import krylov.Functions.MetricPlaneObservedCentre
+import krylov.Functions.ReferencePlaneObservedData
+import krylov.Functions.MetricHilbertPlaneSharpSources
+import krylov.Functions.RFCFTensorTheory
+import krylov.Functions.GenericMetricPullback
+import krylov.Functions.HilbertPlaneSharpSources
+import krylov.Functions.PlanarRFCFSharpShrink
+import krylov.Functions.PlanarSharpShrink
+import krylov.Functions.MetricFCHomogeneousTransfer
+import krylov.Functions.NativeRFCHomogeneousTransfer
+import krylov.Functions.HarmonicSharpComparison
+import krylov.Functions.MetricCubicMinimum
+import krylov.Information.BinaryPlanarMinimax
+import krylov.Functions.PlanarFiniteMinimax
+import krylov.Functions.MetricFCNormalizedResponse
+import krylov.Functions.NativeRFCNormalizedResponse
+import krylov.Functions.MetricFCQuadraticDegreeTransfer
+import krylov.Functions.NativeRFCQuadraticDegreeTransfer
+import krylov.Functions.NativeRFCFNormalizedResponse
+import krylov.Functions.NativeRFCFRestarted
+import krylov.Functions.ReferenceFibreNormalization
+import krylov.Design.Extrapolation
+import krylov.Tensor.ReferenceFlatOperator
+import krylov.Functions.NativeRFCSpatialResponse
+import krylov.Functions.RFCModifiedCorrection
+import krylov.Functions.ValueModelCoordinates
+import krylov.Functions.NativeRFCFReference
+import krylov.Design.DegenerateWeights
+import krylov.Design.InfiniteFiniteValues
+import krylov.Design.SechMaximumBounds
+import krylov.Design.SechGridLimit
+import krylov.Design.EllipticAGM
+import krylov.Functions.MetricFCOwnSpatialResponse
+import krylov.Functions.MetricFCCubicRemainder
+import krylov.Functions.GenuineThirdTensor
+import krylov.Functions.NativeRFCPhysicalTransfer
+import krylov.Functions.NativeRFCJets
+import krylov.Functions.NativeRFCSymmetry
+import krylov.Functions.PlanarFunctionMinimax
+import krylov.Functions.RFCBilinear
+import krylov.Functions.NativeRFCF
+import krylov.Tensor.ValueResponseBound
+import krylov.Tensor.ReferenceLowerBound
+import krylov.Design.PoissonMajorants
+import krylov.Design.MixedDesignTheorem
+import krylov.Design.DualRemainders
+import krylov.Design.HyperbolicSeriesLimit
+import krylov.Functions.HiddenIncrements
+import krylov.Functions.MetricFCLeadingGradient
+import krylov.Functions.MetricFCIncrementTransfer
+import krylov.Functions.NativeRFCOperators
+import krylov.Functions.RFCReferenceFields
+import krylov.Functions.PlanarValueDerivatives
+import krylov.Tensor.BinaryGlobalMinimax
+import krylov.Tensor.ReferenceAmplification
+import krylov.Tensor.CubicUncurrying
+import krylov.Functions.SelfConcordantSecants
+import krylov.Functions.ObjectiveCoordinates
+import krylov.Functions.NativeFCEmbedding
+import krylov.Functions.TrapezoidFourthSpectral
+import krylov.Functions.NativeFCSearch
+import krylov.Functions.ExactSearchOperator
+import krylov.Functions.TrapezoidSpectral
+import krylov.Functions.TrapezoidFourthVariation
+import krylov.Functions.TrapezoidSharpness
+import krylov.Functions.ValueModelDiagonal
+import krylov.Functions.ValueFibreCoercivity
+import krylov.Functions.HarmonicNorm
+import krylov.Tensor.BinaryRFC
+import krylov.Tensor.BinaryFibreRegularity
+import krylov.Design.AtomExtension
+import krylov.Design.OptimizerSupport
+import krylov.Design.PolynomialSupportBound
+import krylov.Functions.SegmentTrapezoid
+import krylov.Functions.QuadraticHiddenFamily
+import krylov.Design.ChebyshevMajorant
+import krylov.Design.Interval
+import krylov.Design.FiniteSupport
+import krylov.Functions.GradientIndistinguishable
+import krylov.Functions.CubicSegment
+import krylov.Functions.MidpointExpansion
+import krylov.Functions.TrapezoidLipschitz
+import krylov.Secant.Trajectory
+import krylov.Secant.RelativeMetric
+import krylov.Secant.Canonical
+import krylov.Secant.CorrectionOrder
+import krylov.Secant.HiddenSequence
+import krylov.Secant.ConjugateWindow
+import krylov.Secant.WindowInformation
+import krylov.LinearAlgebra.SymmetricBall
+import krylov.LinearAlgebra.Compression
+import krylov.LinearAlgebra.InformationRadius
+import krylov.LinearAlgebra.Schur
+import krylov.LinearAlgebra.NormOrder
+import krylov.LinearAlgebra.BlockCompletion
+import krylov.LinearAlgebra.HiddenEntry
+import krylov.LinearAlgebra.CorrectionAsymptotics
+import krylov.LinearAlgebra.Aggregation
+import krylov.LinearAlgebra.BudgetSupport
+import krylov.LinearAlgebra.SpectralBudgetDuality
+import krylov.LinearAlgebra.FrobeniusSupport
+import krylov.LinearAlgebra.SupportDuality
+import krylov.LinearAlgebra.FrobeniusBudgetDuality
+import krylov.LinearAlgebra.NuclearSupport
+import krylov.LinearAlgebra.HilbertSchmidtCompression
+import krylov.LinearAlgebra.FrobeniusAggregation
+import krylov.LinearAlgebra.PlanarWitness
+import krylov.LinearAlgebra.PlanarAggregation
+import krylov.LinearAlgebra.MatrixCompression
+import krylov.LinearAlgebra.MatrixAsymptotics
+import krylov.Secant.FlagOrder
+import krylov.LinearAlgebra.OldestPair
+import krylov.Secant.OldestAsymptotics
+import krylov.Secant.TerminalPlane
+import krylov.Secant.TerminalRadius
+import krylov.Secant.TerminalPrefix
+import krylov.Secant.TerminalFibre
+import krylov.Reference.CG
+import krylov.Reference.Stopping
+import krylov.Reference.EnergyMinimum
+import krylov.Reference.Contraction
+import krylov.Reference.Lanczos
+import krylov.Reference.Gauss
+import krylov.Reference.MomentDeterminant
+import krylov.Reference.GradientMeasure
+import krylov.Reference.GaussRemainder
+import krylov.Reference.Exhaustion
+import krylov.Reference.Iterates
+import krylov.Reference.LanczosMeasure
+import krylov.Methods.QuadraticConsistency
+import krylov.Methods.InformationSpan
+import krylov.Methods.ReferenceModels
+import krylov.Methods.ExecutedFC
+import krylov.Methods.DirectionStaircase
+import krylov.Methods.StaticTermination
+import krylov.Methods.XRFC
+import krylov.Methods.XRFCDTermination
+import krylov.Methods.DirectionInformation
+import krylov.Methods.XRFCShort
+import krylov.Methods.FinalCorrection
+import krylov.Methods.OracleCost
+import krylov.Methods.RFCFinalOutput
+import krylov.Methods.RFCS
+import krylov.Methods.RFCProjection
+import krylov.Methods.ScheduledCorrections
+import krylov.Realization.BudgetConversion
+import krylov.Realization.FCBudgetConversion
+import krylov.Realization.ActualBudgetConversion
+import krylov.Realization.FixedBridge
+import krylov.Variation.FrobeniusResponse
+import krylov.Variation.CorrectionFree
+import krylov.Stability.ReferenceWeights
+import krylov.Stability.AnalyticCG
+import krylov.Stability.AnalyticFC
+import krylov.Stability.AnalyticCorrection
+import krylov.Stability.AnalyticRFC
+import krylov.Stability.RFCCompactRemainder
+import krylov.Stability.RFCProjectedOrders
+import krylov.Stability.RFCCanonicalOrders
+import krylov.Methods.Classes
+import krylov.Methods.RFCPhase
+import krylov.Stability.ObservedProgramRemainder
+import krylov.Stability.FCCones
+import krylov.Stability.CanonicalContinuity
+import krylov.Stability.UniformGram
+import krylov.Stability.UniformConjugacy
+import krylov.Stability.UniformDirectionBasis
+import krylov.Stability.ObservedProjection
+import krylov.Stability.ProjectedDirectionBounds
+import krylov.Stability.WeightedOldProjection
+import krylov.Stability.UniformGradient
+import krylov.Stability.CanonicalDirectionGeometry
+import krylov.Stability.CanonicalObservedFC
+import krylov.Stability.UniformFCStep
+import krylov.Stability.UniformFC
+import krylov.Stability.UniformFCScaling
+import krylov.Stability.ObliqueResponse
+import krylov.Stability.CanonicalFCOperators
+import krylov.Reference.GalerkinUniqueness
+import krylov.Stability.UniformLineSearch
+import krylov.Stability.UniformFlagBounds
+import krylov.Stability.WeightedCGFlags
+import krylov.Stability.ContDiffXRFC
+import krylov.Stability.XRFCCompactRemainder
+import krylov.Stability.RFCCones
+import krylov.Realization.FixedInjections
+import krylov.Realization.RawJacobi
+import krylov.Realization.RawTail
+import krylov.Realization.RawContinuation
+import krylov.Realization.RawFrozen
+import krylov.Realization.RawLDL
+import krylov.Realization.RawPolynomialAction
+import krylov.Realization.RawCG
+import krylov.Stability.RFCPairOrders
+import krylov.Stability.HomogeneousTaylor
+import krylov.Stability.FCCompactRemainder
+import krylov.Variation.FCFirstVariation
+import krylov.Variation.FCResponse
+import krylov.Variation.FCLocalRemainder
+import krylov.Realization.RawCGCoefficients
+import krylov.Stability.CanonicalResponseCoordinates
+import krylov.Stability.UniformDirectionFlags
+import krylov.Stability.ObliqueResponseBounds
+import krylov.Stability.UniformFCResponse
+import krylov.Stability.SpectralScale
+
+import krylov.Stability.UniformFCStepScale
+
+import krylov.Realization.TerminalWeights
+
+import krylov.Stability.UniformFCScale
+
+import krylov.Stability.UniformResponseScale
+
+import krylov.Realization.ChebyshevNodes
+
+import krylov.Stability.MetricRootRegularity
+
+import krylov.Stability.CanonicalRegularity
+
+import krylov.Methods.CorrectionFree
+
+import krylov.Stability.SmoothLists
+
+import krylov.Stability.SupremumAsymptotics
+
+import krylov.Methods.CorrectionProgram
+
+import krylov.Methods.ObservedListRules
+
+import krylov.Methods.CompiledProbed
+
+import krylov.Methods.CompiledHomogeneous
+
+import krylov.Methods.CompiledOutputs
+
+import krylov.Stability.CompiledCompact
+
+import krylov.Methods.LocalPolicyCharts
+
+import krylov.Stability.CompiledMetricCompact
+
+import krylov.Stability.FCWorstReferences
+
+import krylov.Methods.SmoothClasses
+
+import krylov.Stability.FCWorstAsymptotics
+
+import krylov.Methods.SmoothTrace
+
+import krylov.Stability.SmoothCompact
+
+import krylov.Realization.PhysicalJacobi
+
+import krylov.Methods.ReferenceProbedSteps
+
+import krylov.Methods.HomogeneousProtocol
+
+import krylov.Stability.SmoothCones
+
+import krylov.Variation.CorrectionFreeVariation
+
+import krylov.Variation.CorrectionFreeMinimax
+
+import krylov.Stability.SmoothMetricCompact
+
+import krylov.Stability.InteriorFCResponse
+
+import krylov.Envelope.Continuation
+
+import krylov.Envelope.Geometry
+
+import krylov.Envelope.FirstJets
+
+import krylov.Envelope.FrozenResponse
+
+import krylov.Methods.NonlinearCG
+
+import krylov.Envelope.ActualJetEnvelope
+
+import krylov.Methods.HistoryShape
+
+import krylov.Methods.LBFGS
+
+import krylov.Methods.LBFGSReference
+
+import krylov.Envelope.DisplacementResponse
+
+import krylov.Envelope.ExploredFlag
+
+import krylov.Methods.LBFGSRegularity
+
+import krylov.Methods.NonlinearCGRegularity
+
+import krylov.Envelope.MovingSpanJet
+
+import krylov.Methods.SmoothProbedFields
+
+import krylov.Envelope.ActualGradientJet
+
+import krylov.Envelope.GradientJetLift
+
+import krylov.Envelope.KrylovFlags
+
+import krylov.Envelope.JetSubspace
+
+import krylov.Envelope.FrozenJetLift
+
+import krylov.Envelope.PolynomialDifferential
+
+import krylov.Methods.CorrectionTraceGeometry
+
+import krylov.Envelope.FrozenFiltration
+
+import krylov.Envelope.CorrectionProgramJets
+
+import krylov.Methods.ReferenceSearch
+
+import krylov.Envelope.JetLists
+
+import krylov.Envelope.ScalarJets
+
+import krylov.Envelope.ObservedJets
+
+import krylov.Envelope.CorrectionObservationJets
+
+import krylov.Methods.SmoothProbedDecisions
+
+import krylov.Methods.ProbedStepBasis
+
+import krylov.Methods.SmoothCorrectionChart
+
+import krylov.Envelope.ActualCorrectionJets
+
+import krylov.Envelope.ActualSearchJets
+
+import krylov.Envelope.ActualDirectionJets
+
+import krylov.Envelope.ActualObservationFiltration
+
+import krylov.Envelope.ActualFiltration
+
+import krylov.Envelope.CanonicalFiltration
+
+import krylov.Envelope.CanonicalDirectionalFiltration
+
+import krylov.Envelope.CompactEnvelope
+
+import krylov.Envelope.ActualFrozenStep
+
+import krylov.Envelope.ActualResidualJets
+
+import krylov.Envelope.TiltSplitting
+
+import krylov.Envelope.FCResidualVariation
+
+import krylov.Envelope.ResidualOrders
+
+import krylov.Envelope.PrefixResponseCoordinates
+
+import krylov.Envelope.RFCResidualVariation
+
+import krylov.Envelope.FCResidualResponse
+
+import krylov.Envelope.RealizationDifference
+
+import krylov.Methods.HistoryReconstruction
+
+import krylov.Methods.HistoryObservationRegularity
+
+import krylov.Methods.HistoryMap
+
+import krylov.Methods.ObservationSynthesis
+
+import krylov.Methods.HistoryWindowCharts
+
+import krylov.Methods.FCObservedRule
+
+import krylov.Methods.FCCompilation
+
+import krylov.Methods.FCSmoothClass
+
+import krylov.Envelope.CanonicalInjections
+
+import krylov.Envelope.CanonicalResponseFormula
+
+import krylov.Envelope.NormTrace
+
+import krylov.Envelope.CompactNormVariation
+
+import krylov.Envelope.ActualNormTrace
+
+import krylov.Methods.HistoryShapeSelection
+
+import krylov.Methods.ModelObservedProgram
+
+import krylov.Methods.RFCObservedCharts
+
+import krylov.Methods.RFCObservedProgram
+
+import krylov.Methods.ObservedHistoryCharts
+
+import krylov.Methods.ObservedGateCharts
+
+import krylov.Methods.RFCCompilation
+
+import krylov.Methods.RFCSmoothClass
+
+import krylov.Envelope.GradientProjection
+
+import krylov.Envelope.PositiveReferenceCurve
+
+import krylov.Envelope.GradientShadow
+
+import krylov.Methods.FiniteOracleCharts
+
+import krylov.Envelope.ShadowSegments
+
+import krylov.Envelope.OracleFirstJets
+
+import krylov.Envelope.PositiveReferenceOperator
+
+import krylov.Envelope.AbsorbedShadow
+
+import krylov.Envelope.PhysicalAbsorbedShadow
+
+import krylov.Envelope.CanonicalAbsorption
+
+import krylov.Envelope.AbsorbedCompression
+
+import krylov.Envelope.CanonicalShadow
+
+import krylov.Envelope.DirectionResponse
+
+import krylov.Envelope.PolynomialFlags
+
+import krylov.Envelope.CanonicalPolynomialFlags
+
+import krylov.Envelope.TiltLastIncrement
+
+import krylov.Envelope.FlagOrthogonality
+
+import krylov.Envelope.CanonicalInjectionPairing
+
+import krylov.Envelope.DirectionTiltGeometry
+
+import krylov.Envelope.ResponseAbsorption
+
+import krylov.Envelope.TiltAbsorption
+
+import krylov.Envelope.ForcedAbsorbedResponse
+
+import krylov.Envelope.StaticPolynomialVariation
+
+import krylov.Envelope.AbsorbedPolynomialPairing
+
+import krylov.Envelope.TiltFormula
+
+import krylov.Envelope.PowerMetricPairing
+
+import krylov.Envelope.DaleckiiKreinMatrix
+
+import krylov.Envelope.ProjectionMatrices
+
+import krylov.Envelope.DaleckiiKreinPairing
+
+import krylov.Envelope.DaleckiiKreinLastBlock
+
+import krylov.Envelope.ScenarioCoordinates
+
+import krylov.Envelope.ScenarioVariation
+
+import krylov.Envelope.ScenarioBudgets
+
+import krylov.Envelope.ScenarioPaths
+
+import krylov.Envelope.ScenarioRFC
+
+import krylov.Envelope.ScenarioAbsorption
+
+import krylov.Envelope.ScenarioMaximum
+
+import krylov.Methods.CorrectionCount
+
+import krylov.Envelope.SelectionInformationBound
+
+import krylov.Envelope.RFCSelectionValue
+
+import krylov.Envelope.SelectionMinimax
+
+import krylov.Envelope.PolynomialCoverage
+
+import krylov.Envelope.SelectionKernels
+
+import krylov.Envelope.UnitPolynomial
+
+import krylov.Envelope.SelectionDualSupport
+
+import krylov.Envelope.SelectionNuclearDual
+
+import krylov.Envelope.SelectionSupportLaws
+
+import krylov.Envelope.SelectionSignAttainment
+
+import krylov.Envelope.DaleckiiKreinPadding
+
+import krylov.Envelope.SelectionValueLaws
+
+import krylov.Envelope.SelectionBoundary
+
+import krylov.Methods.EmptyCompilation
+
+import krylov.Methods.NonlinearCGObserved
+
+import krylov.Envelope.SelectionEarlyDual
+
+import krylov.Methods.NonlinearCGCharts
+
+import krylov.Methods.NonlinearCGSmoothClass
+
+import krylov.Envelope.PerturbedComparison
+
+import krylov.Envelope.CompactComparison
+
+import krylov.Methods.LBFGSCoefficients
+
+import krylov.Methods.LBFGSObserved
+
+import krylov.Methods.LBFGSSmoothClass
+
+import krylov.Envelope.ScenarioFrozenLinearity
+
+import krylov.Envelope.ScenarioRealizationMinimax
+
+import krylov.Methods.CorrectionFreeClasses
+
+import krylov.Envelope.ScenarioBudgetNorm
+
+import krylov.Envelope.ScenarioEnvelopeGeometry
+
+import krylov.Envelope.FiniteObservationJets
+
+import krylov.Envelope.AbsorbedObservationShadow
+
+import krylov.Envelope.PhysicalAbsorbedObservations
+
+import krylov.Envelope.FiniteStepJets
+
+import krylov.Envelope.CanonicalAbsorbedObservations
+
+import krylov.Envelope.AbsorbedStepShadow
+
+import krylov.Envelope.AffineOracleJet
+
+import krylov.Envelope.PhysicalAbsorbedSteps
+
+import krylov.Envelope.ReferenceStepJet
+
+import krylov.Envelope.CanonicalAbsorbedSteps
+
+import krylov.Envelope.SourceAbsorbedFibre
+
+import krylov.Methods.CorrectionFollow
+
+import krylov.Methods.GenericReferencePairs
+
+import krylov.Methods.AppendModelProgram
+
+import krylov.Methods.FinalizedMethod
+
+import krylov.Methods.FinalizedInformation
+
+import krylov.Methods.LatestAfterReference
+
+import krylov.Methods.FinalizedReference
+
+import krylov.Methods.AppendedModelObserved
+
+import krylov.Methods.ScaledReferenceModel
+
+import krylov.Methods.FinalizedCompilation
+
+import krylov.Methods.FinalizedLocal
+
+import krylov.Methods.FinalizedCoefficientDomains
+
+import krylov.Methods.FinalizedSmoothClass
+
+import krylov.Envelope.ModelCorrectionFirstJet
+
+import krylov.Methods.FinalizedOutput
+
+import krylov.Envelope.RecordedResidualJet
+
+import krylov.Methods.ProbedModelBasis
+
+import krylov.Methods.ProbedModelReference
+
+import krylov.Envelope.FinalizedProjectedJets
+
+import krylov.Methods.FinalizedCorrectionCount
+
+import krylov.Envelope.FinalizedResidualJets
+
+import krylov.Envelope.FinalizedTilt
+
+import krylov.Envelope.JointScenarioRegularity
+
+import krylov.Envelope.FDerivScenarioSlice
+
+import krylov.Envelope.FinalizedSelection
+
+import krylov.Envelope.JointScenarioOutput
+
+import krylov.Envelope.CompactScenarioTaylor
+
+import krylov.Envelope.ActualScenarioNorm
+
+import krylov.Envelope.CompactBudgetEnvelope
+
+import krylov.Envelope.CompactWorstNormComparison
+
+import krylov.Envelope.CompactScenarioNormVariation
+
+import krylov.Envelope.CompactScenarioDerivative
+
+import krylov.Envelope.ReferenceErrorContinuity
+
+import krylov.Envelope.CompactBudgetComparison
+
+import krylov.Envelope.CompactBudgetLinear
+
+import krylov.Envelope.AmbientExhaustion
+
+import krylov.Envelope.FinalErrorImage
+
+import krylov.Envelope.NamedFinalAttainers
+
+import krylov.Envelope.SingletonTilt
+
+import krylov.Reference.EnergyPositive
+
+import krylov.LinearAlgebra.OrthogonalPairSupport
+
+import krylov.Envelope.FinalErrorImageNorm
+
+import krylov.Envelope.FiniteSingletonTilt
+
+import krylov.Envelope.SingletonCoefficient
+
+import krylov.Envelope.SingletonSelectionProduct
+
+import krylov.Envelope.SingletonSelection
+
+import krylov.Methods.DeferredDirection
+
+import krylov.Methods.DeferredCoefficients
+
+import krylov.Methods.DeferredMethod
+
+import krylov.Methods.DeferredObserved
+
+import krylov.Methods.DeferredReference
+
+import krylov.Methods.DeferredReindex
+
+import krylov.Methods.DeferredCompilation
+
+import krylov.Methods.DeferredSmoothClass
+
+import krylov.Methods.CorrectionFreeOracles
+
+import krylov.Methods.DeferredResidualTransfer
+
+import krylov.Methods.DeferredPrefix
+
+import krylov.Methods.FullProbedWindow
+
+import krylov.Envelope.ZeroOperatorPairJet
+
+import krylov.Methods.DeferredLastPairing
+
+import krylov.Envelope.CanonicalDefectPairing
+
+import krylov.Envelope.DeferredModelDomain
+
+import krylov.Methods.DeferredActualResidual
+
+import krylov.Envelope.DeferredResidualJets
+
+import krylov.Envelope.FreshDefect
+
+import krylov.Methods.CorrectionFreeSearch
+
+import krylov.Envelope.ResidualCoordinates
+
+import krylov.Envelope.FreshDefectCoordinates
+
+import krylov.Envelope.DeferredFreshResidual
+
+import krylov.Methods.OrthogonalProbe
+
+import krylov.Envelope.ScenarioDeferred
+
+import krylov.Envelope.CanonicalSingletonPath
+
+import krylov.LinearAlgebra.PerpendicularPlaneUnit
+
+import krylov.Envelope.CanonicalProbeOrthogonality
+
+import krylov.Envelope.CorrectionFreeLastSingleton
+
+import krylov.Envelope.CorrectionFreeFreshScenario
+
+import krylov.Envelope.ScenarioBudgetUpdates
+
+import krylov.Envelope.OldPerpendicularUnit
+
+import krylov.Envelope.FreshCrossWitness
+
+import krylov.Envelope.SelectionZeroLastWitness
+
+import krylov.Envelope.CorrectionFreeExcessWitness
+
+import krylov.Envelope.CorrectionFreeExcess
+
+import krylov.Methods.CorrectionFreeQuadraticPrefix
+
+import krylov.Envelope.NamedCorrectionFreeExcess
+
+import krylov.Envelope.InvisibleIncrements
+
+import krylov.Envelope.CanonicalDriftDirection
+
+import krylov.Envelope.CorrectionFreeHiddenPrefix
+
+import krylov.Envelope.InvisibleRemainder
+
+import krylov.Envelope.CorrectionFreeHiddenScenario
+
+import krylov.Envelope.CorrectionFreeInvisible
+
+import krylov.Methods.TargetedFinalCorrection
+
+import krylov.Envelope.CorrectionFreeInvisibleResidual
+
+import krylov.Methods.TargetModelObserved
+
+import krylov.Methods.TargetedReference
+
+import krylov.Methods.TargetedObservedProgram
+
+import krylov.Methods.TargetedCompilation
+
+import krylov.Methods.TargetedCoefficientDomains
+
+import krylov.Envelope.TargetModelJet
+
+import krylov.Methods.FullModelRegularity
+
+import krylov.Methods.TargetedSmoothCycle
+
+import krylov.Methods.TargetedOutput
+
+import krylov.Envelope.TargetedGradientRegularity
+
+import krylov.Envelope.ScenarioAxisVariation
+
+import krylov.Envelope.TargetedGradientJet
+
+import krylov.Envelope.ModelBasisProjectionZero
+
+import krylov.Envelope.TargetedScenarioRegularity
+
+import krylov.Methods.TargetedZeroQueries
+
+import krylov.Envelope.TargetedScenarioZero
+
+import krylov.Methods.ReferenceSmoothClass
+
+import krylov.Envelope.ReferenceSelectionZero
+
+import krylov.Methods.BroydenUpdate
+
+import krylov.Methods.BroydenReferencePair
+
+import krylov.Methods.BroydenModel
+
+import krylov.Methods.BroydenConvexScale
+
+import krylov.Methods.BroydenCoefficients
+
+import krylov.Methods.BroydenReferenceModel
+
+import krylov.Methods.BroydenPivots
+
+import krylov.Methods.BroydenReference
+
+import krylov.Methods.BroydenCoefficientRegularity
+
+import krylov.Methods.BroydenEndpoints
+
+import krylov.Methods.BroydenObserved
+
+import krylov.Methods.BroydenSmoothClass
+
+import krylov.Envelope.BroydenSelection
+
+import krylov.Envelope.ContinuationSecondOrder
+
+import krylov.Realization.ConstantSuffixTransfer
+
+import krylov.Envelope.TwoTermSuffixPhi
+
+import krylov.LinearAlgebra.SchurDeterminant
+
+import krylov.Envelope.RawPhiTransfer
+
+import krylov.Envelope.ContinuationCongruence
+
+import krylov.Envelope.LanczosRawCoefficients
+
+import krylov.Envelope.RawPhiDeterminant
+
+import krylov.Envelope.RawSchur
+
+import krylov.Envelope.LanczosPhiDeterminant
+
+import krylov.Envelope.RawSchurShift
+
+import krylov.Envelope.RawSchurJacobi
+
+import krylov.Envelope.LanczosSchur
+
+import krylov.LinearAlgebra.SchurProduct
+
+import krylov.Envelope.RawSchurInverse
+
+import krylov.LinearAlgebra.InverseSpectralOrder
+
+import krylov.LinearAlgebra.SpectralContinuation
+
+import krylov.LinearAlgebra.PrincipalInverseBounds
+
+import krylov.Envelope.RawSchurBounds
+
+import krylov.Envelope.LanczosSpectralContinuation
+
+import krylov.LinearAlgebra.JacobiKernel
+
+import krylov.LinearAlgebra.JacobiStrictPrefix
+
+import krylov.Envelope.LanczosPhiGeometry
+
+import krylov.Envelope.HeavyBallPolynomial
+
+import krylov.Reference.LanczosForms
+
+import krylov.LinearAlgebra.StrictSpectralShifts
+
+import krylov.Reference.LanczosStrictWindow
+
+import krylov.Reference.HeavyBallMatrix
+
+import krylov.Envelope.HeavyBallMaximum
+
+import krylov.LinearAlgebra.SpectralUpperForm
+
+import krylov.LinearAlgebra.SpectralEndpoints
+
+import krylov.LinearAlgebra.SpectralContinuationSplits
+
+import krylov.LinearAlgebra.GershgorinInterval
+
+import krylov.Reference.HeavyBallCoefficients
+
+import krylov.Envelope.PhiRitz
+
+import krylov.Reference.HeavyBallRadius
+
+import krylov.Envelope.PhiRitzProperties
+
+import krylov.Reference.HeavyBallWindow
+
+import krylov.Reference.HeavyBallParameters
+
+import krylov.Reference.CGCovariance
+
+import krylov.Reference.AlternatingSigns
+
+import krylov.Envelope.HeavyBallContinuation
+
+import krylov.Reference.CGMomentInvariance
+
+import krylov.Reference.HeavyBallOrientation
+
+import krylov.Reference.GradientMeasureInvariance
+
+import krylov.Reference.HeavyBallMeasure
+
+import krylov.Envelope.HeavyBallMeasureContinuation
+
+import krylov.Envelope.ContinuationCompactLimit
+
+import krylov.Envelope.ContinuationUniformLimit
+
+import krylov.LinearAlgebra.PositiveDescent
+
+import krylov.LinearAlgebra.VanishingContraction
+
+import krylov.LinearAlgebra.RiccatiBarrier
+
+import krylov.LinearAlgebra.ShiftedPivotGap
+
+import krylov.LinearAlgebra.RiccatiError
+
+import krylov.LinearAlgebra.PositivePivotLimit
+
+import krylov.Reference.JacobiSequence
+
+import krylov.Reference.JacobiPivots
+
+import krylov.Reference.JacobiFunctionalGauss
+
+import krylov.Reference.CompactMeasureIntegral
+
+import krylov.LinearAlgebra.PositiveGaussNodes
+
+import krylov.Reference.JacobiTruncation
+
+import krylov.Reference.JacobiPivotLimit
+
+import krylov.Reference.JacobiFunctionalWindow
+
+import krylov.Reference.JacobiOrientation
+
+import krylov.Reference.JacobiCoefficients
+
+import krylov.Reference.GaussCGCoefficients
+
+import krylov.Reference.JacobiMeasureDomains
+
+import krylov.Envelope.GaussContinuation
+
+import krylov.Envelope.NevaiContinuation
+
+import krylov.Envelope.RegularMovingSpanJet
+
+import krylov.Envelope.SolveJets
+
+import krylov.Methods.VirtualTrajectory
+
+import krylov.Envelope.XRFCBlockJets
+
+import krylov.Methods.OneGradientChronological
+
+import krylov.Envelope.XRFCJetCoherence
+
+import krylov.Envelope.TrialWeights
+
+import krylov.Methods.VirtualBalance
+
+import krylov.Envelope.TrialWeightPrefix
+
+import krylov.Envelope.InjectionDifferences
+
+import krylov.Envelope.XRFCFrozenFiltration
+
+import krylov.Envelope.ZeroDefectJet
+
+import krylov.Stability.VirtualCoefficientRegularity
+
+import krylov.Envelope.XRFCNativeWeights
+
+import krylov.Envelope.VirtualDefectJets
+
+import krylov.Envelope.OperatorSummation
+
+import krylov.Envelope.XRFCOutputJet
+
+import krylov.Envelope.TrialReferenceSums
+
+import krylov.Envelope.XRFCNormPairing
+
+import krylov.Envelope.TrialOperatorIdentities
+
+import krylov.Envelope.XRFCNormEnvelope
+
+import krylov.Envelope.XRFCReferenceBidiagonal
+
+import krylov.Envelope.XRFCReferenceOperatorSums
+
+import krylov.Envelope.CanonicalMissedDirection
+
+import krylov.Envelope.XRFCInjectionFormula
+
+import krylov.Envelope.CanonicalTrialSums
+
+import krylov.Methods.XRFCReferenceOutput
+
+import krylov.Stability.XRFCMetricRegularity
+
+import krylov.Envelope.XRFCCanonicalTrialFormulas
+
+import krylov.Envelope.XRFCCompactNorm
+
+import krylov.Envelope.XRFCDirectionalPairing
+
+import krylov.Envelope.XRFCSourceEnvelope
+
+import krylov.Envelope.XRFCTrialDelta
+
+import krylov.Envelope.XRFCCompactEnvelope
+
+import krylov.Envelope.XRFCExactTrials
+
+import krylov.Correction.PlanarAttainment
+import krylov.Correction.InformedScalar
+import krylov.Correction.SpectralGate
+import krylov.Correction.CanonicalBounds
+import krylov.Correction.ModifiedExpansion
+import krylov.Correction.ScenarioBounds
+import krylov.Correction.GateScaling
+import krylov.Correction.GatedCurvature
+import krylov.Correction.DiagonalModelChange
+import krylov.Correction.ModifiedScenarioTube
+import krylov.Correction.TwoCorrections
+import krylov.Correction.CompactScenarioBounds
+import krylov.Information.ObservationReplay
+import krylov.Information.MetricSlack
+import krylov.Information.PhysicalCentre
+import krylov.Information.PhysicalReplay
+import krylov.Information.PhysicalRadius
+import krylov.Information.CentreFibre
+import krylov.Information.MinimaxAsymptotic
+import krylov.Information.FrobeniusMinimaxAsymptotic
+import krylov.Information.KnownBaseLower
+import krylov.Information.MidpointCoefficient
+import krylov.Information.UnobservedNormal
+import krylov.Information.ObservedExtension
+import krylov.Methods.ChangedFinalExecution
+import krylov.Correction.FirstIncrementGeometry
+import krylov.Variation.FrobeniusBox
+
+
+
+import krylov.Information.ChangedModelExecution
+import krylov.Information.MidpointPolicy
+import krylov.Information.KnownBaseMidpointUpper
+import krylov.Information.KnownBaseMinimaxAsymptotic
+import krylov.Information.FirstIncrementScenario
+import krylov.Information.RFCFirstIncrement
+import krylov.Information.KnownBaseRFCBound
+
+import krylov.Stability.RFCSProjectedOrders
+
+import krylov.Correction.RFCSCanonical
+
+import krylov.Information.RFCSWorstRisk
+
+import krylov.Information.PreQuadraticPrefix
+
+import krylov.Information.FormCoordinates
+
+import krylov.LinearAlgebra.GershgorinBound
+
+import krylov.Information.PreQuadraticGram
+
+import krylov.Information.ForwardForms
+import krylov.Information.PreQuadraticSlack
+
+import krylov.Information.NaturalInner
+import krylov.Information.CommonTwin
+
+import krylov.Information.CommonTwinAdmissible
+
+import krylov.Information.FiniteCentre
+
+import krylov.Information.CommonTerminal
+
+import krylov.Information.ObservedCentreGauge
+import krylov.Information.ModelReversal
+import krylov.Information.PreQuadraticModel
+import krylov.Information.PreQuadraticCentreBounds
+import krylov.Information.CentredRFC
+import krylov.Information.SharpMetricComparison
+import krylov.Information.RelativeReferenceError
+import krylov.Information.InstanceScalar
+import krylov.Information.InstanceMetric
+import krylov.Information.InstanceOwnMetric
+import krylov.Information.ReferenceErrorBall
+import krylov.Information.PreQuadraticInstance
+import krylov.Information.InnerScenario
+import krylov.Information.InnerSharpScalar
+import krylov.Information.InnerLower
+import krylov.Information.InnerMinimaxBound
+import krylov.Information.InnerMinimaxAsymptotic
+import krylov.Information.InstanceAdditive
+
+import krylov.Correction.DeepFamily
+import krylov.Correction.CertificateMatrix
+import krylov.Correction.CertificatePhase
+
+import krylov.Correction.CertificatePrefix
+import krylov.Correction.CertificateContinuity
+import krylov.Correction.SingularFamily
+import krylov.Correction.DeepDomains
+import krylov.Correction.DeepSource
+import krylov.Correction.CertificateGate
+
+import krylov.Correction.CertificateInput
+import krylov.Correction.DeepExpressions
+import krylov.Correction.DeepCertificate
+import krylov.Correction.DeepStage0
+import krylov.Correction.DeepStage1
+import krylov.Correction.DeepStage2
+import krylov.Correction.DeepStage3
+import krylov.Correction.DeepExecution
+import krylov.Correction.DeepInterval
+import krylov.Correction.DeepChecked
+
+import krylov.Correction.DeepChain
+import krylov.Correction.DeepQuotient
+import krylov.Correction.DeepFeatures
+import krylov.Correction.DeepUnbounded
+import krylov.Correction.DeepAuxiliary
+import krylov.Correction.DeepModels
+import krylov.Correction.DeepActual
+import krylov.LinearAlgebra.LeadingPosDef
+
+import krylov.Correction.UniformRecordedCorrection
+import krylov.Nonlinear.AveragedComparison
+
+import krylov.LinearAlgebra.SpectralLowerForms
+
+import krylov.Correction.ObservedSpectralScaling
+
+import krylov.Stability.CompactZeroQuadratic
+import krylov.Correction.RFCSJoint
+import krylov.Correction.RFCSCompact
+
+import krylov.Correction.RFCSOperatorTube
+import krylov.Nonlinear.GradientExtension
+
+import krylov.Methods.RFCSHomogeneous
+import krylov.Nonlinear.RFCSFunction
+import krylov.Nonlinear.RFCSLocality
+import krylov.Correction.RFCSCompactBounds
+import krylov.Correction.RFCSOperatorCoordinates
+import krylov.Nonlinear.RFCSGrowth
+import krylov.Nonlinear.GradientLocal
+import krylov.Nonlinear.RFCSLocalization
+import krylov.Stability.CompactFirstOrder
+import krylov.Correction.RFCSFieldRegularity
+import krylov.Nonlinear.RFCSAveraged
+import krylov.Nonlinear.SelfConcordantHessian
+import krylov.Correction.RFCSAlphaBounds
+import krylov.Stability.CompactEventual
+import krylov.Correction.RFCSDomains
+import krylov.Correction.RFCSReferenceTube
+import krylov.Nonlinear.RFCSAveragedBounds
+import krylov.Nonlinear.RFCSFunctionRemainder
+import krylov.Nonlinear.GradientQuadratic
+import krylov.Nonlinear.RFCSNonlinearCubic
+import krylov.Nonlinear.CanonicalAverages
+import krylov.Nonlinear.GradientErrorTransfer
+import krylov.Nonlinear.SelfConcordantCoordinates
+import krylov.Nonlinear.RFCSC1Localization
+import krylov.Nonlinear.MetricCoordinates
+import krylov.Nonlinear.RFCSNonlinearSource
+import krylov.Nonlinear.RFCSFunctionFields
+import krylov.Nonlinear.RFCSCycleGeometry
+import krylov.Nonlinear.CoordinateLipschitz
+import krylov.Nonlinear.SelfConcordantLocal
+import krylov.Nonlinear.LastProbeAlgebra
+import krylov.Nonlinear.RFCSCanonicalMismatch
+import krylov.Nonlinear.RFCSLastProbeUniform
+import krylov.Nonlinear.RFCSCanonicalGradient
+import krylov.Nonlinear.CoordinateGradientError
+import krylov.Nonlinear.RFCSCoordinateError
+import krylov.Nonlinear.RFCSSelfConcordant
+import krylov.Nonlinear.ReferenceCycleScale
+import krylov.Nonlinear.RFCSStationary
+import krylov.Nonlinear.SelfConcordantFunction
+import krylov.Nonlinear.RFCSSelfConcordantFunction
+import krylov.Nonlinear.RFCSRestarted
+import krylov.Correction.RFCSDomainScaling
+import krylov.Nonlinear.RFCSFunctionDomains
+import krylov.Correction.GatedRecordedBounds
+import krylov.Correction.GatedCanonical
+import krylov.Correction.GatedUniformRecording
+import krylov.Correction.GatedPhaseGrowth
+import krylov.Correction.GatedPrefixGrowth
+import krylov.Correction.GatedSmallLine
+import krylov.Correction.ObservedGateAcceptance
+import krylov.Correction.GatedAccepted
+import krylov.Correction.GatedFullContraction
+import krylov.Correction.RecordedAngle
+import krylov.Correction.GatedNearModel
+import krylov.Correction.ObservedAugmentedGram
+import krylov.Correction.GatedStableStep
+import krylov.Correction.GatedCutoffAlgebra
+import krylov.Correction.GatedCutoffInvariant
+import krylov.Correction.GatedCutoffParameters
+import krylov.Correction.GatedWindowPhase
+import krylov.Correction.GatedEmptyPrefix
+import krylov.Correction.GatedTerminalContraction
+import krylov.Correction.GatedUniformCutoff
+import krylov.Correction.GatedRestartEnergy
+import krylov.Correction.GatedFinalPrefix
+import krylov.Correction.GatedHistoryTerminal
+import krylov.Correction.GatedSmallCutoff
+import krylov.Correction.GatedUniformCycle
+import krylov.Correction.GatedHomogeneousDomains
+import krylov.Correction.GatedUniformBounds
+import krylov.Correction.GatedSpectralCycle
+import krylov.Correction.GatedScenarioBudget
+import krylov.Correction.GatedScenarioCycle
+import krylov.Stability.ObservedGradient
+import krylov.Correction.ObservedSearchDomains
+import krylov.Methods.ChronologicalWindow
+import krylov.Stability.UniformObservedLine
+import krylov.Stability.ObservedCanonical
+import krylov.Correction.RFCLinearAngles
+import krylov.Stability.ActualObservedSearch
+import krylov.Correction.RecordedPrefixReindex
+import krylov.Correction.RFCUniformConstants
+import krylov.Correction.RFCUniformParameters
+import krylov.Correction.RFCUniformPrefix
+import krylov.Correction.RFCUniformNonstagnation
+import krylov.Correction.GatedRFCComparison
+import krylov.Correction.ObservedPrefixModels
+import krylov.Correction.RFCNonstagnatingModels
+import krylov.Correction.RFCOrdinaryModels
+import krylov.Correction.UniformCorrectionAlgebra
+import krylov.Correction.RFCContamination
+import krylov.Correction.UniformModelBounds
+import krylov.Correction.RFCUniformContamination
+import krylov.Correction.UniformBasisInverse
+import krylov.Correction.NearIdentityGate
+import krylov.Correction.GatedDefinedComparison
+import krylov.Correction.ModelThreshold
+import krylov.Correction.GatedUniformComparison
+import krylov.Correction.RFCHistoryScaling
+import krylov.Correction.SpectralHistoryScaling
+import krylov.Correction.GatedOriginalComparison
+import krylov.Correction.GatedScenarioComparison
+import krylov.Correction.ChronologicalModel
+import krylov.Correction.UniformTerminalOperator
+import krylov.Correction.TerminalObliqueResponse
+import krylov.Correction.ObliqueStaircase
+import krylov.Correction.TerminalBasisAlgebra
+import krylov.Correction.CleanModelStaircase
+import krylov.Correction.TerminalFreshCoordinates
+import krylov.Correction.TerminalStaircaseComparison
+import krylov.Correction.TerminalModelQuery
+import krylov.Correction.TerminalCGResponse
+import krylov.Correction.UniformModelScaling
+import krylov.Correction.OriginalUniformModels
+import krylov.Correction.ScenarioUniformModels
+import krylov.Correction.ChronologicalCorrection
+import krylov.Correction.TerminalWeightedFlags
+import krylov.Correction.TerminalMeasuredCGResponse
+import krylov.Correction.OrdinaryTerminalPrefix
+import krylov.Correction.ChronologicalModelBasis
+import krylov.Correction.OrdinaryObservedLine
+import krylov.Correction.ScenarioModelCoordinates
+import krylov.Correction.RFCInitialReference
+import krylov.Correction.OrdinarySearchCoordinates
+import krylov.Correction.RFCSecondSearch
+import krylov.Correction.RFCInitialShadow
+import krylov.Correction.TerminalObservedGeometry
+import krylov.Correction.OrdinaryTerminalResponse
+import krylov.Correction.UniformOrdinaryResponse
+import krylov.Correction.ResponseHomogeneity
+import krylov.Correction.OriginalUniformResponse
+import krylov.Correction.UniformSourceTheorem
+import krylov.Correction.RFCSecondRecorded
+import krylov.Correction.ThreeDimensionalPrefix
+import krylov.Correction.UniformPrefixResponse
+import krylov.Correction.ThreeDimensionalResponse
+import krylov.Correction.GatedUniformApplicability
+import krylov.Correction.ThreeDimensionalModels
+import krylov.Correction.LowDimensionalUniformity
+import krylov.OneGradient.TrialMinimax
+import krylov.Completion.Clipping
+import krylov.OneGradient.TrialAmplitudes
+import krylov.Cancellation.DCSlide
+import krylov.OneGradient.Information
+import krylov.Completion.SpectralExtension
+import krylov.Completion.ScalarSchur
+import krylov.Completion.CurvatureCompletion
+import krylov.Cancellation.ResidualPropagation
+import krylov.Completion.WindowFrame
+import krylov.Completion.WindowCompletion
+import krylov.Completion.RayleighInterval
+import krylov.Completion.ShortedCompletion
+import krylov.Completion.ActionEndpoints
+import krylov.Completion.ActionCurvatures
+import krylov.Completion.FullActionRange
+import krylov.OneGradient.LanczosFibre
+import krylov.OneGradient.RankOnePivot
+import krylov.OneGradient.PhysicalFibre
+import krylov.OneGradient.InformationMoments
+import krylov.OneGradient.CGFibre
+import krylov.OneGradient.LanczosPower
+import krylov.OneGradient.CompletionCG
+import krylov.OneGradient.FibreMoments
+import krylov.OneGradient.OutputUncertainty
+import krylov.OneGradient.LastEvaluation
+import krylov.OneGradient.FibreMinimax
+import krylov.OneGradient.XRFCOutputMaximum
+import krylov.OneGradient.FibreExact
+import krylov.OneGradient.CentralFibreMinimax
+import krylov.OneGradient.JacobiCoordinates
+import krylov.LinearAlgebra.LastSchurPivot
+import krylov.OneGradient.JacobiPivot
+import krylov.LinearAlgebra.NormLineInterval
+import krylov.OneGradient.JacobiCoupling
+import krylov.OneGradient.RelativeBallFibre
+import krylov.OneGradient.RelativeBallRatio
+import krylov.OneGradient.ProbedFibre
+import krylov.Completion.StrictJacobiBand
+import krylov.OneGradient.PhysicalJacobiBand
+import krylov.Completion.SchurEndpoints
+import krylov.OneGradient.JacobiSpectralInterval
+import krylov.OneGradient.PhysicalSpectralEndpoints
+import krylov.LinearAlgebra.InverseShiftQuadratic
+import krylov.OneGradient.SpectralFibreParameters
+import krylov.OneGradient.SpectralFibreRatio
+import krylov.OneGradient.PolynomialMoments
+import krylov.OneGradient.MomentCompression
+import krylov.OneGradient.TopMoment
+import krylov.OneGradient.SupportedMomentCompletion
+import krylov.OneGradient.AtomicProbability
+import krylov.OneGradient.MomentAffine
+import krylov.OneGradient.MomentAttainment
+import krylov.OneGradient.MissingMomentRange
+import krylov.OneGradient.CanonicalMoment
+import krylov.OneGradient.FiniteMomentUniqueness
+import krylov.OneGradient.RadauUniqueness
+import krylov.OneGradient.EndpointAtoms
+import krylov.OneGradient.PrincipalRepresentations
+import krylov.OneGradient.XRFCColumns
+import krylov.OneGradient.XRFCProjector
+import krylov.LinearAlgebra.TrialResponseSharp
+import krylov.OneGradient.XRFCSharp
+import krylov.LinearAlgebra.MatrixSymmetricFamily
+import krylov.OneGradient.XRFCLaunch
+import krylov.Completion.PhysicalTrialMinimax
+import krylov.Completion.FullActionSchurRange
+import krylov.Completion.WindowTrialMinimax
+import krylov.Completion.FullActionTrialMinimax
+import krylov.Completion.WindowFeasibility
+import krylov.Completion.ActionWindowInterval
+import krylov.OneGradient.CanonicalMomentMeasures
+import krylov.Stability.ContDiffSpectralMatrix
+import krylov.OneGradient.LaunchModelJet
+import krylov.OneGradient.LaunchModelRegularity
+import krylov.OneGradient.LaunchFirstJet
+import krylov.OneGradient.LaunchTaylor
+import krylov.OneGradient.XRFCLaunchDictionary
+import krylov.OneGradient.XRFCLaunchPath
+import krylov.OneGradient.XRFCStepVariation
+import krylov.Stability.FirstOrderTaylor
+import krylov.OneGradient.XRFCStepTaylor
+import krylov.OneGradient.XRFCStepFrechet
+import krylov.OneGradient.XRFCStepCompact
+import krylov.OneGradient.CanonicalMatrixPath
+import krylov.OneGradient.XRFCStepSource
+import krylov.LinearAlgebra.BidiagonalFlag
+import krylov.OneGradient.XRFCBidiagonal
+import krylov.LinearAlgebra.ProjectionRowNorm
+import krylov.OneGradient.XRFCFlagRow
+import krylov.OneGradient.XRFCFlagExact
+import krylov.Methods.DirectionExecution
+import krylov.Methods.DirectionReference
+import krylov.Stability.DirectionRegularity
+import krylov.Stability.ContDiffXRFCD
+import krylov.Methods.DirectionImageError
+import krylov.Methods.DirectionWeights
+import krylov.Methods.XRFCBasisHistory
+import krylov.Stability.DirectionCoefficientRegularity
+import krylov.Stability.ZeroProductJet
+import krylov.OneGradient.DirectionImageJet
+import krylov.Envelope.ModelCorrectionJet
+import krylov.OneGradient.DirectionImageRecurrence
+import krylov.Envelope.TrialReplaySum
+import krylov.OneGradient.DirectionTerminalJet
+import krylov.OneGradient.CanonicalOperatorLine
+import krylov.OneGradient.XRFCDirectionVariation
+import krylov.Stability.XRFCDMetricRegularity
+import krylov.OneGradient.XRFCDirectionTaylor
+import krylov.OneGradient.XRFCDirectionFrechet
+import krylov.OneGradient.XRFCDirectionCompact
+import krylov.OneGradient.XRFCDirectionSource
+import krylov.OneGradient.XRFCForgetting
+import krylov.Reference.SpectralConcentration
+import krylov.Reference.ConcentratedCG
+import krylov.OneGradient.HalfCGTrial
+import krylov.OneGradient.ConcentratedComparison
+import krylov.OneGradient.XRFCUnboundedRatio
+import krylov.Methods.DataDeferredCoefficients
+import krylov.Cancellation.DCObserved
+import krylov.Cancellation.DCNativeSmooth
+import krylov.Cancellation.DeferredDataReference
+import krylov.Cancellation.DeferredDataObserved
+import krylov.Cancellation.DeferredDataSmooth
+import krylov.Cancellation.DCReferenceTools
+import krylov.Cancellation.DCOneGradientState
+import krylov.Cancellation.DCOneGradientTrajectory
+import krylov.Cancellation.DCOneGradientRegularity
+import krylov.Cancellation.DCCurvatureTrial
+import krylov.Stability.CompactProductZero
+import krylov.Cancellation.DCEstimateRegularity
+import krylov.Cancellation.FrozenResidualProducts
+import krylov.Cancellation.ObservedWindowDomain
+import krylov.Cancellation.DCLinearizedResidual
+import krylov.Completion.PhysicalDampingMinimax
+import krylov.Completion.ObservedWindowEstimate
+import krylov.Completion.DampingBand
+import krylov.Cancellation.DCRadauEstimate
+import krylov.Cancellation.ResidualGeometric
+import krylov.Cancellation.DCPhysicalWindow
+import krylov.Cancellation.DCRadauReference
+import krylov.Cancellation.DCReferenceDamping
+import krylov.Cancellation.ConsistentProducts
+import krylov.Cancellation.DCConsistentResidual
+import krylov.Cancellation.DCGeometricCompact
+import krylov.Completion.HarmonicDamping
+import krylov.Cancellation.DeferredDataExecution
+import krylov.Cancellation.DeferredDataResidualJet
+import krylov.Cancellation.DeferredResponse
+import krylov.Cancellation.DeferredDataResidualResponse
+import krylov.Cancellation.DeferredTailGeometry
+import krylov.Cancellation.DeferredDataFirstVariation
+import krylov.Cancellation.DeferredSharp
+import krylov.Cancellation.DeferredDataTaylor
+import krylov.Cancellation.DeferredComparison
+import krylov.Cancellation.CorrectionFreeBudgetWitness
+import krylov.Cancellation.DeferredMinimax
+import krylov.Cancellation.DeferredDataScenarioTaylor
+import krylov.Cancellation.DeferredFullProfile
+import krylov.Stability.UniformSupRemainder
+import krylov.Cancellation.DeferredDataBudgetTaylor
+import krylov.Cancellation.DeferredRadauComparison
+import krylov.Cancellation.DeferredDataSharpExpansion
+import krylov.Cancellation.DeferredSourceTheorem
+import krylov.LinearAlgebra.FreshDefectGeometry
+import krylov.Cancellation.WindowResidualMetric
+import krylov.Cancellation.OneGradientFreshObstruction
+import krylov.Cancellation.PhysicalFreshDefect
+import krylov.Cancellation.OneGradientPhysicalFresh
+import krylov.Cancellation.DCOneGradientFreshProjection
+import krylov.Cancellation.WindowResidualEquality
+import krylov.Cancellation.DCOneGradientFreshSharp
+import krylov.Stability.FixedBasisOrder
+import krylov.Cancellation.DCConsistentCycle
+import krylov.Cancellation.DCConsistentFirstVariation
+import krylov.Cancellation.DCEndCycleComparison
+import krylov.Cancellation.DeferredDataCompact
+import krylov.Stability.FiniteScenarioBudget
+import krylov.Cancellation.DeferredDataCompactBudget
+import krylov.Cancellation.DeferredCompactSharp
+import krylov.Stability.CompactC1Bounds
+import krylov.Stability.CompactPairingFreeze
+import krylov.Cancellation.DCFrozenReconstruction
+import krylov.Stability.CompactBasisInverse
+import krylov.Cancellation.DCCompactFrozenCycle
+import krylov.Cancellation.DCCompactCanonicalCycle
+import krylov.Cancellation.DCCompactSymmetricScenario
+import krylov.Cancellation.DCCompactScenario
+import krylov.Cancellation.DCCompactBudget
+import krylov.Cancellation.DCCompactSharp
+import krylov.OneGradient.RawLastNormal
+import krylov.LinearAlgebra.LastDiagonalBand
+import krylov.OneGradient.RawSpectralEndpoints
+import krylov.Reference.HeavyBallSpectralLimit
+import krylov.OneGradient.JacobiCouplingNorm
+import krylov.OneGradient.HeavyBallFibreDictionary
+import krylov.OneGradient.SpectralPrior
+import krylov.OneGradient.SpectralSharpFamily
+import krylov.OneGradient.SpectralSharpSupremum
+import krylov.Completion.QuadraticObservedWindow
+import krylov.Completion.ObservedHarmonicTrial
+import krylov.OneGradient.XRFCObservedSpectral
+import krylov.OneGradient.XRFCUniformSpectral
+import krylov.OneGradient.ObservedPriorFibre
+import krylov.OneGradient.SpectralUniformMinimax
+import krylov.OneGradient.XRFCTwoBasisOutput
+import krylov.OneGradient.ObservedPriorHarmonic
+import krylov.OneGradient.ObservedPriorAttainment
+import krylov.OneGradient.RelativeUniformMinimax
+import krylov.OneGradient.SpectralObservedAttainment
+import krylov.OneGradient.PriorScenarioExtension
+import krylov.Methods.LaggedReplay
+import krylov.OneGradient.LaggedReference
+import krylov.Stability.ContDiffWindows
+import krylov.Stability.LaggedRegularity
+import krylov.OneGradient.LaggedDomains
+import krylov.Stability.LaggedTrialCharts
+import krylov.OneGradient.LaggedSmooth
+import krylov.OneGradient.LaggedCancellation
+import krylov.OneGradient.TrialForgetting
+import krylov.Completion.SchurTrialExtension
+import krylov.OneGradient.LaggedFamily
+import krylov.OneGradient.LaggedJointRemainder
+import krylov.Completion.SchurTrialRegularity
+import krylov.Methods.EvaluatedLaunch
+import krylov.OneGradient.LaggedCanonicalBound
+import krylov.Methods.EvaluatedGeometry
+import krylov.LinearAlgebra.EvaluatedSupport
+import krylov.Methods.ProperKrylovMargins
+import krylov.Methods.ProperKrylovPencils
+import krylov.OneGradient.EvaluatedCanonical
+import krylov.Cancellation.DCSchurEstimate
+import krylov.OneGradient.EvaluatedComparison
+import krylov.Completion.ProperObservedPencils
+import krylov.Cancellation.DCSchurReferenceRegularity
+import krylov.Completion.PhysicalBandForms
+import krylov.Cancellation.DCReferenceInputs
+import krylov.Cancellation.DCSchurNative
+import krylov.Stability.OneGradientTrialBridge
+import krylov.Cancellation.DCSchurExecution
+import krylov.OneGradient.EvaluatedCorrection
+import krylov.OneGradient.KnownBaseObstruction
+import krylov.OneGradient.SchurHarmonic
+import krylov.OneGradient.SchurHarmonicReference
+import krylov.Stability.C1VanishingProduct
+import krylov.OneGradient.SchurHarmonicExecution
+import krylov.OneGradient.LaunchC1Remainder
+import krylov.OneGradient.SchurHarmonicCompact
+import krylov.Stability.FullHistoryVirtual
+import krylov.OneGradient.InformationScenario
+import krylov.OneGradient.InformedTrial
+import krylov.LinearAlgebra.RelativeCurvature
+import krylov.OneGradient.InformedCurvatureJet
+import krylov.OneGradient.InformedCalibration
+import krylov.Methods.NazarethProjection
+import krylov.Methods.NazarethObserved
+import krylov.Methods.NazarethCGStep
+import krylov.Methods.NazarethReference
+import krylov.Methods.NazarethInformation
+import krylov.Methods.NazarethEvaluated
+import krylov.OneGradient.RecordedProjection
+import krylov.Methods.NazarethOutput
+import krylov.Methods.NazarethTrajectory
+import krylov.Methods.RecordedPrediction
+import krylov.Methods.DixonObserved
+import krylov.Methods.BFGSConjugateInverse
+import krylov.Methods.DixonReference
+import krylov.Methods.EvaluatedBFGS
+import krylov.Methods.DirectBroyden
+import krylov.Methods.DixonOutput
+import krylov.Methods.DixonTrajectory
+import krylov.Methods.DirectBroydenOperator
+import krylov.Methods.DirectBroydenModel
+import krylov.Methods.DirectBroydenConjugate
+import krylov.Stability.CompactParameterBound
+import krylov.Methods.DirectBroydenIncrement
+import krylov.Methods.DirectBroydenBounds
+import krylov.Methods.DirectBroydenFinite
+import krylov.Methods.DirectBroydenStep
+import krylov.Methods.DirectBroydenNativeBounds
+import krylov.Methods.DirectBroydenPerturbation
+import krylov.Methods.DirectBroydenComparison
+import krylov.Methods.DirectBroydenCompression
+import krylov.LinearAlgebra.InverseComparison
+import krylov.Methods.DirectBroydenPhysical
+import krylov.LinearAlgebra.MatrixLimits
+import krylov.Methods.DirectBroydenInverse
+import krylov.Methods.DirectBroydenRelativeSource
+import krylov.OneGradient.InformedConstant
+import krylov.OneGradient.InformedScalarBound
+import krylov.Methods.DirectBFGSInverse
+import krylov.OneGradient.InformedCompression
+import krylov.Methods.DixonPerturbedOutput
+import krylov.OneGradient.InformedAttainment
+import krylov.OneGradient.CalibratedDirectionError
+import krylov.OneGradient.InformedDirectionError
+import krylov.OneGradient.CalibratedDirectionCubic
+import krylov.OneGradient.InformedDirectionCubic
+import krylov.OneGradient.TwoDimensionalEnvelope
+import krylov.OneGradient.InformedTerminalBounds
+import krylov.OneGradient.TwoDimensionalRadialMax
+import krylov.OneGradient.TwoDimensionalAttainment
+import krylov.OneGradient.TwoModelRisk
+import krylov.OneGradient.TwoDimensionalComparison
+import krylov.Stability.C1CubicProduct
+import krylov.OneGradient.LaunchVanishingRemainder
+import krylov.OneGradient.TwoDimensionalFormula
+import krylov.OneGradient.InformedStepLaunch
+import krylov.OneGradient.PlanarCompletion
+import krylov.OneGradient.TwoQueryInformation
+import krylov.OneGradient.HiddenPlaneFibre
+import krylov.OneGradient.TwoQueryPhysicalGame
+import krylov.OneGradient.HiddenPlaneObservation
+import krylov.OneGradient.InformedExactQueries
+import krylov.OneGradient.HiddenPlaneCentre
+import krylov.OneGradient.CentredInverseRisk
+import krylov.OneGradient.KnownBaseCentredMethod
+import krylov.OneGradient.HiddenPlaneInverseUpper
+import krylov.OneGradient.KnownBaseCentreData
+import krylov.OneGradient.KnownBaseCentreGeometry
+import krylov.OneGradient.KnownBaseCentreCoordinates
+import krylov.OneGradient.TwoModelUniformLower
+import krylov.OneGradient.KnownBaseCentredUpper
+import krylov.OneGradient.TwoModelReferenceLower
+import krylov.OneGradient.TwoQueryPlane
+import krylov.OneGradient.HiddenPlaneLeading
+import krylov.OneGradient.TwoQueryReferenceGeometry
+import krylov.OneGradient.TwoQueryRiskAttainment
+import krylov.OneGradient.HiddenPlaneFiniteLower
+import krylov.OneGradient.KnownBaseTwoQueryGuarantee
+import krylov.OneGradient.HiddenPlaneEndpoints
+import krylov.OneGradient.TwoQueryPhysicalCoordinates
+import krylov.OneGradient.TwoQueryTransportedGame
+import krylov.OneGradient.KnownBaseTwoQueryLower
+import krylov.OneGradient.TwoQueryMinimaxLoss
+import krylov.OneGradient.KnownBaseTwoQueryMinimax
+import krylov.OneGradient.KnownBaseTwoQueryScenario
+import krylov.OneGradient.TwoQueryScenarioGuarantee
+import krylov.OneGradient.CanonicalLastNormal
+import krylov.OneGradient.InformedPriorBase
+import krylov.OneGradient.InformedPriorCanonical
+import krylov.OneGradient.ReplayLaunchModel
+import krylov.OneGradient.InformedDirectionColumns
+import krylov.OneGradient.ReplayLaunchCubic
+import krylov.OneGradient.DirectionLaunchDictionary
+import krylov.OneGradient.InformedDirectionDomain
+import krylov.OneGradient.InformedDirectionLaunch
+import krylov.OneGradient.LastLaunchAlgebra
+import krylov.OneGradient.LastLaunchOldRemainder
+import krylov.OneGradient.LastLaunchTrialRemainder
+import krylov.OneGradient.LastLaunchDefect
+import krylov.OneGradient.LastLaunchRows
+import krylov.OneGradient.NativeLastLaunch
+import krylov.OneGradient.InformedNativeReference
+import krylov.OneGradient.InformedNativeRegularity
+import krylov.OneGradient.InformedNativeCalibration
+import krylov.OneGradient.InformedIncomingRows
+import krylov.Reference.CGDirectionCoordinates
+import krylov.Reference.CanonicalDriftPairing
+import krylov.OneGradient.NativeTrialError
+import krylov.OneGradient.CanonicalIncomingRows
+import krylov.OneGradient.InformedCanonicalRows
+import krylov.LinearAlgebra.FullFrameOrder
+import krylov.OneGradient.InformedIncomingVector
+import krylov.OneGradient.InformedNativeOutput
+import krylov.OneGradient.InformedReferenceFlags
+import krylov.OneGradient.InformedStaircase
+import krylov.OneGradient.IncomingFreshDictionary
+import krylov.OneGradient.InformedSourceOutput
+import krylov.OneGradient.NativeVirtualData
+import krylov.OneGradient.InformedNativeCurvature
+import krylov.Reference.CGCurvatureCoordinates
+import krylov.OneGradient.InformedCanonicalCurvature
+import krylov.OneGradient.InformedPivotOutput
+import krylov.OneGradient.InformedPriorKnownFrame
+import krylov.Stability.CGFrameRegularity
+import krylov.OneGradient.InformedReferenceBound
+import krylov.Stability.MovingFullReference
+import krylov.Stability.MovingCoefficient
+import krylov.OneGradient.NativeErrorRegularity
+import krylov.OneGradient.InformedReferenceAttainment
+import krylov.OneGradient.InformedOutputOrder
+import krylov.Stability.MovingMetricOrder
+import krylov.OneGradient.ReferenceQuadraticCoefficient
+import krylov.OneGradient.InformedMovingOutput
+import krylov.OneGradient.InformedPhysicalScenario
+import krylov.OneGradient.ScenarioOperators
+import krylov.OneGradient.InformedPhysicalOperators
+import krylov.OneGradient.ScenarioCanonicalIncrements
+import krylov.OneGradient.ScenarioOperatorRegularity
+import krylov.OneGradient.KnownBaseSourceCube
+import krylov.OneGradient.InformedPhysicalParameters
+import krylov.OneGradient.KnownBaseCubeExpansion
+import krylov.OneGradient.InformedConstantScaling
+import krylov.OneGradient.KnownBaseSourceEmbedding
+import krylov.OneGradient.KnownBaseBudgetConversion
+import krylov.OneGradient.KnownBaseSourceUpper
+import krylov.OneGradient.KnownBaseReferenceNorm
+import krylov.OneGradient.KnownBaseFiniteUpper
+import krylov.OneGradient.KnownBaseOwnRisk
+import krylov.OneGradient.SourcePivotHomogeneity
+import krylov.OneGradient.KnownBaseAsymptoticUpper
+import krylov.OneGradient.InformedPhysicalLeading
+import krylov.OneGradient.InformedPriorNormalization
+import krylov.Stability.QuadraticNormLimit
+import krylov.OneGradient.InformedPhysicalMetricSqueeze
+import krylov.OneGradient.InformedPhysicalRiskLimit
+import krylov.OneGradient.KnownBaseInformedSharp
+import krylov.Secant.LatestCongruenceOrder
+import krylov.LinearAlgebra.ObservedStepChange
+import krylov.Methods.DirectionStepChange
+import krylov.Methods.PairBasisChange
+import krylov.Methods.PairSolveOrder
+import krylov.OneGradient.InformedStepChange
+import krylov.Methods.PairModelChangeOrder
+import krylov.Methods.DirectionRecordedFields
+import krylov.LinearAlgebra.QuotientComparison
+import krylov.OneGradient.InformedRecordedComparison
+import krylov.Methods.LineLengthComparison
+import krylov.OneGradient.InformedDirectionCurvature
+import krylov.OneGradient.InformedBasisPivot
+import krylov.OneGradient.CalibratedNativeReference
+import krylov.OneGradient.CalibratedReferenceData
+import krylov.OneGradient.CalibratedNativeRegularity
+import krylov.OneGradient.CalibratedNativeImage
+import krylov.OneGradient.CalibratedIncomingRows
+import krylov.OneGradient.CalibratedStepLaunch
+import krylov.OneGradient.CalibratedDirectionColumns
+import krylov.OneGradient.CalibratedCanonicalRows
+import krylov.OneGradient.CalibratedDirectionDomain
+import krylov.OneGradient.CalibratedDirectionLaunch
+import krylov.OneGradient.CalibratedIncomingVector
+import krylov.OneGradient.CalibratedVirtualData
+import krylov.OneGradient.CalibratedNativeOutput
+import krylov.OneGradient.CalibratedErrorRegularity
+import krylov.OneGradient.CalibratedReferenceFlags
+import krylov.OneGradient.CalibratedOutputOrder
+import krylov.OneGradient.CalibratedStaircase
+import krylov.OneGradient.CalibratedSourceOutput
+import krylov.OneGradient.FixedCGTrial
+import krylov.OneGradient.CalibratedMovingOutput
+import krylov.OneGradient.CalibratedTrialOrder
+import krylov.OneGradient.FixedCGOutput
+import krylov.Cancellation.DeferredSchurNative
+import krylov.Cancellation.DeferredSchurSharp
+import krylov.OneGradient.KnownBaseGeneralTrials
+/-!
+Article: Adaptive Krylov Methods under Hessian Variation — public mathematical entry point.
+Use: `python3 -m Tools.Verification.Check krylov --require-complete` checks the
+ordered article correspondence, full source coverage and transitive proof axioms.
+See krylov/ArticleMap.md for numbered statements and krylov/Architecture.md for proof layers.
+-/

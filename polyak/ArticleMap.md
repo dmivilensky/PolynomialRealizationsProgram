@@ -1,18 +1,19 @@
 # polyak: article correspondence
 
-All numbers below are those of [the PDF](../polyak.pdf); labels and titles are
-from [the flattened TeX](../polyak.tex). Names are relative to `polyak`.
+Numbers, labels and titles follow [the article](../polyak.pdf).
+Names are relative to `polyak`.
 [Article.lean](Article.lean) checks these declarations in the same order, with
 a separate numbered block for each result. Its comments explain the exact
 interpretation of hypotheses, normalizations and quantifiers. Definitions are
 checked as definitions; composite statements list all necessary conclusions.
 
 The statements and the expanded Lean signatures have been compared mathematically.
-The source pin below detects stale review after article changes; the automated
-checks also enforce the complete ordered inventory and per-block references.
+The reviewed counts below and the Lean showcase let automated checks enforce
+the recorded ordered inventory and per-block references.
 The correspondence records the mathematical comparison; Lean checks the referenced proofs.
 
-<!-- article-source: polyak.tex sha256=b76570d8ea5868ca948350b3c43d5955759b6dc05208c87524322123b077866f -->
+<!-- article-review -->
+<!-- article-numbered-count: 144 -->
 <!-- article-prose-count: 36 -->
 
 | Article | Lean declarations | Meaning and hypotheses |

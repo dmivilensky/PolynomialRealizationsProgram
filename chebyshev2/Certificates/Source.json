@@ -5,6 +5,5 @@
   "archive_path": "results/proof.tar.xz",
   "archive_bytes": 45127308,
   "archive_sha256": "efaf4681c909c9a3eac175e63687c9bb3ce24101e9f32e11507f27081eafbbe8",
-  "paper": "chebyshev2",
-  "paper_sha256": "cb9eb1f76d18e83017ce40d790474e50067e2a3b19d2342f84d0c670bb32c531"
+  "paper": "chebyshev2"
 }

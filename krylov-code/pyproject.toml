@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "krylov-xr"
+version = "0.1.0"
+description = "Reproducible Krylov optimization experiments and article artifacts"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2,<3", "scipy>=1.15,<2", "pycgdescent==0.12.1"]
+
+[project.optional-dependencies]
+cutest = ["pycutest==1.8.2"]
+article = ["matplotlib>=3.10,<4"]
+test = ["pytest>=8,<10", "ruff>=0.14"]
+
+[project.scripts]
+xrbench = "xrbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+xrbench = ["resources/*.json", "problems/*.json", "native/*.c", "native/*.h", "native/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = "artifacts/logs/cache/pytest"
+addopts = "-ra"
+markers = ["cutest: requires a native CUTEst installation", "integration: isolated process and artifact tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+cache-dir = "artifacts/logs/cache/ruff"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+# O, I and short lambda formulas follow the mathematical notation in the papers.
+ignore = ["E731", "E741", "E742"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/xrbench/study.py" = ["E402"]
+

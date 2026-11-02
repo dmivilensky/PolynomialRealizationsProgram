@@ -194,9 +194,6 @@ def sync_aggregate(projects):
     if not path.is_file():
         return
     source = "".join(f"import {project.check_module}\n" for project in projects)
-    # Keep disabled local package imports available when refreshing the public aggregate.
-    source += "".join(line + "\n" for line in path.read_text().splitlines()
-                      if line.startswith("-- import "))
     source += '''
 /-!
 Shared complete-check entry point, maintained by `python3 -m Tools.Verification.Check all`.

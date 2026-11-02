@@ -1,0 +1,22 @@
+% Generated from the current campaign; do not edit by hand.
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\hline
+Method & CUTEst & $N_g^{\mathrm{method}}/N_g^{\mathrm{XR}}$ & Both solved & XR only & Method only \\
+\hline
+XR & 139/149 & 1.00 & 151 & 0 & 0 \\
+XR-F & 137/149 & 1.07 & 148 & 3 & 1 \\
+L-BFGS(20) & 121/149 & 1.29 & 131 & 20 & 2 \\
+L-CG\_DESCENT(11) & 139/149 & 1.20 & 147 & 4 & 4 \\
+MS-L-BFGS(8,8) & 130/149 & 1.16 & 139 & 12 & 3 \\
+SC-MSS(3,5) & 125/149 & 1.89 & 133 & 18 & 4 \\
+SC-SR1(5,7) & 121/149 & 2.08 & 130 & 21 & 3 \\
+O-ACCEL-B & 132/149 & 4.11 & 141 & 10 & 3 \\
+BFGS-SP & 138/149 & 1.38 & 144 & 7 & 6 \\
+\hline
+\end{tabular}
+\caption{Full-memory BFGS-SP reference on CUTEst instances with $n\le300$ and twelve quadratics, at relative gradient tolerance $10^{-8}$. Gradient ratios are geometric means on instances solved by both methods. Paired counts and ratios pool the 149 CUTEst instances and twelve controls (161 problems). XR only and Method only count exclusive successes. Common to all rows: Quadratics = 12/12.}
+\label{tab:bfgs-reference}
+\end{table}

@@ -25,19 +25,22 @@ srcDir = "Tools"
 roots = ["Verification.All", "Verification.Audit"]
 leanOptions = { autoImplicit = false, warningAsError = true }
 
-# Local-only package; uncomment to restore its build.
-# [[lean_lib]]
-# name = "jacobi"
-# roots = ["jacobi", "jacobi.Check"]
-# leanOptions = { autoImplicit = false, warningAsError = true }
+[[lean_lib]]
+name = "jacobi"
+roots = ["jacobi", "jacobi.Check"]
+leanOptions = { autoImplicit = false, warningAsError = true }
 
-# Local-only package; uncomment to restore its build.
-# [[lean_lib]]
-# name = "krylov"
-# roots = ["krylov", "krylov.Check"]
-# leanOptions = { autoImplicit = false, warningAsError = true }
+[[lean_lib]]
+name = "krylov"
+roots = ["krylov", "krylov.Check"]
+leanOptions = { autoImplicit = false, warningAsError = true }
 
 [[lean_lib]]
 name = "polyak"
 roots = ["polyak", "polyak.Check"]
+leanOptions = { autoImplicit = false, warningAsError = true }
+
+[[lean_lib]]
+name = "bezout"
+roots = ["bezout", "bezout.Check"]
 leanOptions = { autoImplicit = false, warningAsError = true }

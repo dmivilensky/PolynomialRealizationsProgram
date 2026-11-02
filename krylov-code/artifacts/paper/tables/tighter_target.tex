@@ -1,0 +1,21 @@
+% Generated from the current campaign; do not edit by hand.
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\hline
+Method & Solved at $10^{-8}$ & Solved at $10^{-10}$ & $N_g(10^{-10})/N_g(10^{-8})$ & Both solved \\
+\hline
+XR & 16/16 & 11/16 & 1.31 & 11 \\
+XR-F & 15/16 & 12/16 & 1.30 & 12 \\
+L-BFGS(20) & 11/16 & 10/16 & 1.61 & 10 \\
+L-CG\_DESCENT(11) & 16/16 & 15/16 & 1.59 & 15 \\
+MS-L-BFGS(8,8) & 14/16 & 10/16 & 1.65 & 10 \\
+SC-MSS(3,5) & 11/16 & 10/16 & 1.90 & 10 \\
+SC-SR1(5,7) & 12/16 & 11/16 & 1.90 & 11 \\
+O-ACCEL-B & 15/16 & 14/16 & 1.67 & 14 \\
+\hline
+\end{tabular}
+\caption{Gradient-tolerance sensitivity on 16 CUTEst instances, four per objective/dimension group, selected by the fixed hash rule. Ratios are geometric means on instances solved at both tolerances. Every run uses the same preset, 100000-point budget and 120-second limit.}
+\label{tab:tighter-target}
+\end{table}

@@ -1,0 +1,46 @@
+# Python environments, build products and local caches.
+/.venv/
+/.local/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.so
+*.dylib
+*.dll
+*.o
+*.a
+*.npy
+*.npz
+.pytest_cache/
+.ruff_cache/
+/build/
+/dist/
+/htmlcov/
+.coverage*
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Experiment histories, reports, logs and supplementary outputs stay local.
+/artifacts/*
+!/artifacts/paper/
+/artifacts/paper/*
+!/artifacts/paper/figures/
+!/artifacts/paper/tables/
+/artifacts/paper/figures/*
+/artifacts/paper/tables/*
+
+# Files included by krylov.tex.
+!/artifacts/paper/figures/controlled.pdf
+!/artifacts/paper/figures/cutest_gradients.pdf
+!/artifacts/paper/figures/cutest_time.pdf
+!/artifacts/paper/figures/libsvm.pdf
+!/artifacts/paper/figures/local.pdf
+!/artifacts/paper/tables/ablations.tex
+!/artifacts/paper/tables/bfgs_reference.tex
+!/artifacts/paper/tables/libsvm_comparisons.tex
+!/artifacts/paper/tables/libsvm_datasets.tex
+!/artifacts/paper/tables/local_summary.tex
+!/artifacts/paper/tables/settings_summary.tex
+!/artifacts/paper/tables/tighter_target.tex
