@@ -29,3 +29,5 @@ LeanBook
 *.fdb_latexmk
 *.synctex.gz
 *.xdv
+literature-audit
+*_supplementary.pdf

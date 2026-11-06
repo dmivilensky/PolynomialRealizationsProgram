@@ -3,6 +3,7 @@ import chebyshev1.Check
 import chebyshev2.Check
 import jacobi.Check
 import krylov.Check
+import nesterov.Check
 import polyak.Check
 
 /-!

@@ -2,34 +2,8 @@
 
 Lean proofs for [bezout](bezout/README.md), [chebyshev1](chebyshev1/README.md),
 [chebyshev2](chebyshev2/README.md), [jacobi](jacobi/README.md),
-[krylov](krylov/README.md), and [polyak](polyak/README.md).
-Definitions and intermediate lemmas live under the corresponding article name.
-The second Chebyshev package reuses the first; Polyak also uses their exact
-arithmetic and interval checkers.
-The [jacobi package](jacobi/README.md) formalizes
-[Resolvent-Diagonal Energy of Isospectral Jacobi Matrices](jacobi.pdf).
-The [krylov package](krylov/README.md) formalizes
-[Adaptive Krylov Methods under Hessian Variation](krylov.pdf);
-[krylov-code](krylov-code/README.md) contains its numerical solvers,
-experiments and the figures and tables used by the article.
-The [polyak package](polyak/README.md) formalizes
-[Two Answers on Heavy-Ball Dynamics](polyak.pdf), with its own build and complete
-source/axiom audit. Its [ordered showcase](polyak/Article.lean) and
-[correspondence](polyak/ArticleMap.md) cover both parts, all 144 numbered
-results and the five selected numerical examples. The computational package
-[polyak-code](polyak-code/README.md) supplies two pinned mathematical JSON archives
-through [Part I Source.json](polyak/Certificates/Source.json) and
-[Part II Source.json](polyak/Certificates/PartII/Source.json).
-Polyak reads both archives locally from `polyak-code`; they stay in that
-package. Chebyshev II retains
-its pinned external certificate source.
-
-The [bezout package](bezout/README.md) formalizes
-[Chebyshev-Exact Acceleration under Gradient Variation](bezout.pdf): the exact
-Flat and Balanced optima, their physical register algorithms, and the symbolic
-competitor and finite-noise comparisons. Its [correspondence](bezout/ArticleMap.md)
-connects the article to checked signatures; it uses analytic imports without
-numerical proof archives.
+[krylov](krylov/README.md), [polyak](polyak/README.md), and
+[nesterov](nesterov/README.md).
 
 Mathematical sources stay in their article packages. Shared tooling lives in:
 
@@ -52,12 +26,13 @@ certificate inputs register their local converters separately in
 
 ```sh
 lake exe cache get
-python3 -m Tools.Verification.Check bezout --offline --require-complete --replay
 python3 -m Tools.Verification.Check chebyshev1
 python3 -m Tools.Verification.Check chebyshev2
 python3 -m Tools.Verification.Check jacobi
 python3 -m Tools.Verification.Check krylov --require-complete
 python3 -m Tools.Verification.Check polyak
+python3 -m Tools.Verification.Check bezout --offline --require-complete --replay
+python3 -m Tools.Verification.Check nesterov --offline --require-complete --replay
 ```
 
 Each command checks the selected directory's `Check.lean`, source coverage and
@@ -84,35 +59,6 @@ come from `lakefile.toml`. A sibling public root file is optional. No source-dis
 needs the new package's name. Replay uses existing compiled artifacts and never
 builds them.
 
-To replay a new namespace subtree against previously checked compiled dependencies,
-use `python3 -m Tools.Verification.Replay polyak --scope Farey`, or combine it
-with the normal cached build and complete audit using
-`python3 -m Tools.Verification.Check polyak --jobs 1 --require-complete --replay-scope Farey`.
-The subtree is selected by its package-relative directory. Repeat `--scope` or
-`--replay-scope` to replay a union of subtrees with cross-dependencies, as in
-the [polyak command](polyak/README.md). The stock kernel helper rejects a
-baseline that already contains declarations owned by any selected subtree. This avoids repeating
-unchanged Part I certificate checks during Part II work; `--replay` explicitly
-requests the full package instead.
-
-The [showcases](polyak/Article.lean) and [correspondence tables](polyak/ArticleMap.md)
-record manual comparison with the article PDFs. Automation checks their local Lean
-links and agreement with each other. A reviewed map records the number of numbered
-and unnumbered items; verification checks their order, numbers, labels, kinds,
-titles and per-block declaration references against the Lean showcase.
-The verification inputs are Lean sources, certificate archives and correspondence
-maps. Mathematical comparison with the articles is recorded in the maps.
-The maps are optional for a plain Lean package. [Trust.md](Trust.md) explains
-the axiom checks.
-
-Package-specific witness generation remains under `Tools/Certificates`.
-Chebyshev II automatically fetches its pinned GitHub archive and reconstructs
-and compares its reference, residual and quadrature witnesses before building.
-The heavy-ball archive reader and generators are
-[PolyakPrepare](Tools/Certificates/PolyakPrepare.py) and
-[Polyak](Tools/Certificates/Polyak/README.md); generated Lean literals remain
-under `polyak/Certificates` and `polyak/Boundary`.
-
 `python3 -m Tools.Maintenance.Clean --dry-run` lists disposable files;
 `python3 -m Tools.Maintenance.Clean` removes caches, downloads, logs and temporary artifacts.
 It also removes all declared Polyak inputs regenerated from the local `polyak-code`
@@ -124,11 +70,3 @@ Run the tooling tests after `python3 -m Tools.Verification.Check all` with
 `python3 -m unittest discover -s Tools/Tests -p 'Test*.py' -v`.
 The kernel rejection tests use the compiled residual checker from chebyshev2
 and the exact certificate checkers from polyak.
-
-Python 3.11 or newer is required by the shared tools (`tomllib`). The Lean
-version is pinned in [lean-toolchain](lean-toolchain); Mathlib and LeanCert are
-pinned in [lakefile.toml](lakefile.toml) and [lake-manifest.json](lake-manifest.json).
-Polyak certificate conversion uses the pinned dependencies in
-[Tools/Certificates/Polyak/requirements.txt](Tools/Certificates/Polyak/requirements.txt).
-Reproducing experiments and figures uses Python 3.13 and the larger dependency
-set documented in [polyak-code](polyak-code/README.md).

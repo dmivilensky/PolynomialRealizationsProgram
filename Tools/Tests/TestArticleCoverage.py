@@ -54,16 +54,53 @@ class ArticleMapReviewTests(unittest.TestCase):
     def test_reviewed_inventory_matches_showcase(self):
         self.assertEqual(self.check()['verified_numbered_claims'], 3)
 
+    def test_numbered_mathematical_remark_is_checked_in_source_order(self):
+        self.table.write_text(self.table.read_text().replace(
+            'Definition A.1', 'Remark A.1').replace('def:third', 'rem:third'))
+        self.article.write_text(self.article.read_text().replace(
+            'Definition A.1', 'Remark A.1').replace('def:third', 'rem:third'))
+        self.assertEqual(self.check()['verified_numbered_claims'], 3)
+        self.article.write_text(self.article.read_text().replace('Remark A.1', 'Remark A.2'))
+        with self.assertRaisesRegex(ValueError, 'Showcase comments differ'):
+            self.check()
+
     def test_review_needs_no_manuscript_files(self):
         original = Path.open
 
         def guarded_open(path, *args, **kwargs):
-            if path.suffix == ".tex":
+            if path.suffix.lower() in {".tex", ".pdf"}:
                 raise AssertionError("Verification attempted to read a manuscript")
             return original(path, *args, **kwargs)
 
         with mock.patch.object(Path, "open", guarded_open):
             self.assertEqual(self.check()['verified_numbered_claims'], 3)
+
+    def use_topic_inventory(self):
+        self.table.write_text(self.table.read_text().replace(
+            '<!-- article-numbered-count: 3 -->', '<!-- article-topic-count: 3 -->').replace(
+            'Theorem 1.1 — First', 'Topic — First').replace(
+            'Lemma 1.3', 'Topic — Second').replace('Definition A.1 — Third', 'Topic — Third'))
+        self.article.write_text(self.article.read_text().replace(
+            'Theorem 1.1', 'Topic').replace('Lemma 1.3 [lem:second].',
+            'Topic [lem:second]. Second.').replace('Definition A.1', 'Topic'))
+
+    def test_topic_inventory_checks_signatures_without_manuscript_numbers(self):
+        self.use_topic_inventory()
+        self.assertEqual(self.check()['verified_topic_claims'], 3)
+        self.article.write_text(self.article.read_text().replace('[lem:second]', '[lem:other]'))
+        with self.assertRaisesRegex(ValueError, 'Showcase comments differ'):
+            self.check()
+
+    def test_topic_inventory_rejects_deletion_and_mixed_numbered_counts(self):
+        self.use_topic_inventory()
+        original = self.table.read_text()
+        self.table.write_text('\n'.join(line for line in original.splitlines()
+                                        if not line.startswith('| Topic — Second')))
+        with self.assertRaisesRegex(ValueError, 'topic claim inventory'):
+            self.check()
+        self.table.write_text(original + '\n<!-- article-numbered-count: 3 -->\n')
+        with self.assertRaisesRegex(ValueError, 'Mixed topic and numbered'):
+            self.check()
 
     def test_jointly_deleting_a_map_row_and_showcase_block_is_rejected(self):
         self.table.write_text('\n'.join(line for line in self.table.read_text().splitlines()
@@ -77,11 +114,28 @@ class ArticleMapReviewTests(unittest.TestCase):
     def test_duplicate_reviewed_labels_and_numbers_are_rejected(self):
         original = self.table.read_text()
         for changed in [original.replace('lem:second', 'thm:first'),
-                        original.replace('Lemma 1.3', 'Lemma 1.1')]:
+                        original.replace('Lemma 1.3', 'Theorem 1.1')]:
             with self.subTest(changed=changed):
                 self.table.write_text(changed)
                 with self.assertRaisesRegex(ValueError, 'Duplicate reviewed claim'):
                     self.check()
+
+    def test_separate_theorem_and_lemma_counters_may_share_a_number(self):
+        self.table.write_text(self.table.read_text().replace('Lemma 1.3', 'Lemma 1.1'))
+        self.article.write_text(self.article.read_text().replace('Lemma 1.3', 'Lemma 1.1'))
+        self.assertEqual(self.check()['verified_numbered_claims'], 3)
+
+    def test_supplementary_algorithms_have_distinct_labels_and_typed_entries(self):
+        self.table.write_text(self.table.read_text().replace(
+            'Definition A.1', 'Algorithm S1').replace('def:third', 'supp:alg:first'))
+        self.article.write_text(self.article.read_text().replace(
+            'Definition A.1', 'Algorithm S1').replace('def:third', 'supp:alg:first'))
+        self.assertEqual(self.check()['verified_numbered_claims'], 3)
+
+    def test_short_numbers_are_reserved_for_algorithms(self):
+        self.table.write_text(self.table.read_text().replace('Definition A.1', 'Theorem S1'))
+        with self.assertRaisesRegex(ValueError, 'Invalid mathematical claim number'):
+            self.check()
 
     def test_review_marker_and_counts_are_required_for_complete_review(self):
         original = self.table.read_text()
@@ -145,6 +199,23 @@ class ArticleMapReviewTests(unittest.TestCase):
         self.table.write_text(self.table.read_text() + '\n<!-- article-unresolved: an implication -->\n')
         with self.assertRaisesRegex(ValueError, 'Incomplete article coverage'):
             self.check()
+
+    def test_known_gap_allows_proof_checks_without_claiming_complete_coverage(self):
+        self.table.write_text(self.table.read_text() + '\n<!-- article-unresolved: thm:first -->\n')
+        output = io.StringIO()
+        with redirect_stdout(output):
+            result = ArticleCoverage.check(self.project)
+        self.assertFalse(result['complete'])
+        self.assertEqual(result['numbered_claims'], 3)
+        self.assertEqual(result['verified_numbered_claims'], 0)
+        self.assertEqual(result['unresolved_obligations'], ['thm:first'])
+        self.assertIn('INCOMPLETE', output.getvalue())
+
+    def test_incomplete_review_still_rejects_signature_mismatch(self):
+        self.table.write_text(self.table.read_text() + '\n<!-- article-unresolved: thm:first -->\n')
+        self.article.write_text(self.article.read_text().replace('@Example.first', '@Example.other'))
+        with self.assertRaisesRegex(ValueError, 'ordered showcase'):
+            ArticleCoverage.check(self.project)
 
 if __name__ == '__main__':
     unittest.main()

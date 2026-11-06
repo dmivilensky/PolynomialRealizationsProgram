@@ -1,6 +1,6 @@
 # Proof trust
 
-The proofs in `bezout`, `chebyshev1`, `chebyshev2`, `jacobi`, `krylov` and `polyak` permit only three
+The proofs in `bezout`, `chebyshev1`, `chebyshev2`, `jacobi`, `krylov`, `polyak` and `nesterov` permit only three
 transitive axioms: `propext`, `Classical.choice` and `Quot.sound`.
 Dependencies on `sorryAx`, native reduction axioms and other runtime axioms
 are rejected. An axiom's presence in the imported environment does not mean

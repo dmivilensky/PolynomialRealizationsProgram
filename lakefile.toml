@@ -44,3 +44,8 @@ leanOptions = { autoImplicit = false, warningAsError = true }
 name = "bezout"
 roots = ["bezout", "bezout.Check"]
 leanOptions = { autoImplicit = false, warningAsError = true }
+
+[[lean_lib]]
+name = "nesterov"
+roots = ["nesterov", "nesterov.Check"]
+leanOptions = { autoImplicit = false, warningAsError = true }

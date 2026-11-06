@@ -14,17 +14,21 @@ from .Project import lean_code, name_parts, select_projects
 from .CheckCorrespondence import check_showcase
 
 MAP_REVIEW = re.compile(r"^<!-- article-review -->$", re.M)
+CLAIM_KINDS = r"Theorem|Lemma|Proposition|Corollary|Definition|Remark|Algorithm"
+CLAIM_NUMBER = r"[A-Z0-9]+(?:\.\d+)?"
 MAP_CLAIM = re.compile(
-    r"^(Theorem|Lemma|Proposition|Corollary|Definition) ([A-Z0-9]+\.\d+)"
+    rf"^({CLAIM_KINDS}) ({CLAIM_NUMBER})"
     r"(?: — (.*?))? \(`([^`]+)`\)$")
+MAP_TOPIC = re.compile(r"^Topic — (.+?) \(`([^`]+)`\)$")
 MAP_PROSE = re.compile(r"^- `([^`]+)` — (.+)$", re.M)
 
 
-def _map_review(project, path):
+def _map_review(project, path, require_complete=False):
     """Use the readable correspondence itself as the exhaustive review record.
 
     No second inventory or per-package JSON file is necessary. Ordered rows
-    identify PDF number, TeX label, title and exact declarations. Prose bullets
+    identify reviewed labels, titles and exact declarations. A topic inventory
+    deliberately carries no claim about manuscript numbering. Prose bullets
     retain the additional unnumbered obligations and their audited modules.
     """
     raw = path.read_text()
@@ -33,6 +37,8 @@ def _map_review(project, path):
         return None
     if len(markers) != 1:
         raise ValueError("Duplicate article review marker")
+    topic_mode = bool(re.search(r"^<!-- article-topic-count:", raw, re.M))
+    inventory = "topic" if topic_mode else "numbered"
     entries = []
     for row in raw.splitlines():
         if not row.startswith("| ") or row.startswith(("| Article |", "| ---")):
@@ -40,28 +46,36 @@ def _map_review(project, path):
         columns = row.split("|")
         if len(columns) != 5:
             raise ValueError("Article map rows need exactly three columns")
-        match = MAP_CLAIM.fullmatch(columns[1].strip())
+        match = (MAP_TOPIC if topic_mode else MAP_CLAIM).fullmatch(columns[1].strip())
         if not match:
-            raise ValueError(f"Invalid numbered article map row: {columns[1]}")
+            raise ValueError(f"Invalid {inventory} article map row: {columns[1]}")
+        if topic_mode:
+            entries.append({"label": match[2], "kind": "topic", "number": "",
+                            "title": match[1], "links": columns[2], "meaning": columns[3]})
+            continue
+        if match[1] != "Algorithm" and "." not in match[2]:
+            raise ValueError(f"Invalid mathematical claim number: {match[2]}")
         entries.append({"label": match[4], "kind": match[1].lower(), "number": match[2],
                         "title": match[3] or "", "links": columns[2], "meaning": columns[3]})
-    counts = re.findall(r"^<!-- article-numbered-count: (\d+) -->$", raw, re.M)
+    counts = re.findall(rf"^<!-- article-{inventory}-count: (\d+) -->$", raw, re.M)
     if len(counts) != 1 or not entries or len(entries) != int(counts[0]):
-        raise ValueError("Reviewed numbered claim inventory differs")
+        raise ValueError(f"Reviewed {inventory} claim inventory differs")
+    if topic_mode and re.search(r"^<!-- article-numbered-count:", raw, re.M):
+        raise ValueError("Mixed topic and numbered claim inventories")
     if len({item['label'] for item in entries}) != len(entries):
         raise ValueError("Duplicate reviewed claim label")
-    if len({item['number'] for item in entries}) != len(entries):
+    if not topic_mode and len({(item['kind'], item['number']) for item in entries}) != len(entries):
         raise ValueError("Duplicate reviewed claim number")
     # This also enforces exact declaration order and all file links in the showcase.
     check_showcase(project)
     showcase = (project.directory / "Article.lean").read_text()
-    block_pattern = re.compile(
-        r"/\-!\s*Article: (Theorem|Lemma|Proposition|Corollary|Definition) "
-        r"([A-Z0-9]+\.\d+) \[([^\]]+)\]")
+    block_pattern = (re.compile(r"/\-!\s*Article: (Topic)() \[([^\]]+)\]") if topic_mode
+                     else re.compile(rf"/\-!\s*Article: ({CLAIM_KINDS}) "
+                                     rf"({CLAIM_NUMBER}) \[([^\]]+)\]"))
     markers = list(block_pattern.finditer(showcase))
     if [m.groups() for m in markers] != [
             (item["kind"].title(), item["number"], item["label"]) for item in entries]:
-        raise ValueError("Showcase comments differ from the reviewed numbered order")
+        raise ValueError(f"Showcase comments differ from the reviewed {inventory} order")
     for marker, item in zip(markers, entries):
         caption = showcase[marker.end():].splitlines()[0].split("-/", 1)[0].rstrip()
         expected = ". " + item["title"] + "." if item["title"] else "."
@@ -69,7 +83,7 @@ def _map_review(project, path):
             raise ValueError(f"Showcase title differs from the reviewed map: {item['label']}")
     code = lean_code(showcase)
     if re.search(r"^#check\b", code[:markers[0].start()] if markers else code, re.M):
-        raise ValueError("Showcase signature outside its numbered article block")
+        raise ValueError(f"Showcase signature outside its {inventory} article block")
     for i, (marker, item) in enumerate(zip(markers, entries)):
         end = markers[i + 1].start() if i + 1 < len(markers) else len(code)
         checked = [name_parts(n) for n in re.findall(
@@ -101,12 +115,24 @@ def _map_review(project, path):
         for link in links:
             if _local(project.workspace, str((project.directory / link).relative_to(project.workspace))) not in owned:
                 raise ValueError(f"Coverage reference outside package audit: {link}")
-    if re.search(r"<!-- article-unresolved:", raw):
-        raise ValueError("Incomplete article coverage: explicitly unresolved correspondence")
-    print(f"{project.relative}: reviewed map {len(entries)} ordered numbered claims; "
+    unresolved = re.findall(r"<!-- article-unresolved: (.*?) -->", raw)
+    if re.search(r"<!-- article-unresolved:", raw) and not unresolved:
+        raise ValueError("Malformed unresolved correspondence marker")
+    if unresolved and require_complete:
+        raise ValueError("Incomplete article coverage: " + "; ".join(unresolved))
+    print(f"{project.relative}: reviewed map {len(entries)} ordered {inventory} claims; "
           f"{len(prose)} unnumbered groups; map and Lean showcase consistent.", flush=True)
-    return {"numbered_claims": len(entries), "verified_numbered_claims": len(entries),
-            "unnumbered_groups": len(prose)}
+    if unresolved:
+        print(f"{project.relative}: article coverage INCOMPLETE: " + "; ".join(unresolved), flush=True)
+    status = {"complete": not unresolved, "unresolved_obligations": unresolved}
+    # A consistent inventory with outstanding mathematical obligations is not a
+    # certificate of full coverage. Only --require-complete enforces that claim;
+    # ordinary proof builds can still check the existing, narrower theorems.
+    if topic_mode:
+        return {"topic_claims": len(entries), "verified_topic_claims": 0 if unresolved else len(entries),
+                "unnumbered_groups": len(prose), **status}
+    return {"numbered_claims": len(entries), "verified_numbered_claims": 0 if unresolved else len(entries),
+            "unnumbered_groups": len(prose), **status}
 
 
 def _local(workspace, relative):
@@ -121,7 +147,7 @@ def _local(workspace, relative):
 def check(project, require_complete=False):
     """Validate the reviewed article map when present."""
     table = project.directory / "ArticleMap.md"
-    review = _map_review(project, table) if table.is_file() else None
+    review = _map_review(project, table, require_complete=require_complete) if table.is_file() else None
     if review is None and require_complete:
         raise ValueError(f"{project.relative}: no article coverage review")
     return review
